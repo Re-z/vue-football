@@ -1,21 +1,34 @@
 # vue-football
 
+# Description
+This web-app is used to create two different football teams and store data about football players and each completed match
+
+## Features:
+- Uses Vuex and VueRouter 
+- Uses VueMaterial framework
+
+## Todo
+- 404 page
+- Icons to header menu
+- Firebase
+
+
 ## Project setup
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+npm run build
 ```
 
 ### Lints and fixes files
 ```
-yarn run lint
+npm run lint
 ```

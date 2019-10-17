@@ -1,28 +1,48 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+    <div id="app" class="ss">
+        <app-header></app-header>
+
+            <router-view></router-view>
+
+
+        <app-footer></app-footer>
+
+    
+    </div>
+
+
+
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: "app",
-  components: {
-    HelloWorld
-  }
+
+    async created(){
+        let response = await fetch('https://vue-football-83475.firebaseio.com/players.json');
+        let data = await response.json();
+        console.log(data);
+    }
 };
+
 </script>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+    width: 1200px;
+    margin: 0 auto;
 }
+
+
+.ss {
+    height: 100vh;   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.router-link-exact-active {
+    background: lightgray !important
+}
+
+
 </style>
