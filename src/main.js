@@ -1,13 +1,16 @@
 import Vue from "vue";
 import App from "./App.vue";
+import Vuex from "vuex"
+import store from "./store/store.js"
+
 
 import VueRouter from 'vue-router'
 import routes from './routes'
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/black-green-light.css' // This line here
-// import 'vue-material/dist/theme/black-green-dark.css' // This line here
+// import 'vue-material/dist/theme/black-green-light.css' // This line here
+import 'vue-material/dist/theme/black-green-dark.css' // This line here
 
 //components registration
 import Header from './components/parts/Header'
@@ -33,6 +36,7 @@ const router = new VueRouter({
 
 
 new Vue({
+  store,
   router,
   render: h => h(App)
 }).$mount("#app");

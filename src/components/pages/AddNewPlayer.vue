@@ -1,46 +1,52 @@
 <template>
-  <div class="container">
-    <form class="md-layout md-gutter">
-        <div class="md-layout-item md-size-25">
-            <img src="../../assets/img/avatar.jpg" class="form-img" alt="">
-            <md-button style="width: 100%" class="md-raised md-accent">Send form</md-button>
-        </div>
-        <div class="md-layout-item" action="">
-            <md-field>
-                <label>Type here!</label>
-                <md-input v-model="type"></md-input>
-                <span class="md-helper-text">Helper text</span>
-            </md-field>
+    <div class="container">
+                <h2>{{ s }}</h2>
 
-            <md-field>
-                <label>With label</label>
-                <md-input v-model="withLabel" placeholder="A nice placeholder"></md-input>
-            </md-field>
+        <form class="md-layout md-gutter">
 
-            <md-field>
-                <label>Number</label>
-                <md-input v-model="number" type="number"></md-input>
-            </md-field>
+            <div class="md-layout-item md-size-25">
+                <img src="../../assets/img/avatar.jpg" class="form-img" alt="">
+                <md-field>
+                    <md-textarea  placeholder="About info" ></md-textarea>
+                </md-field>
 
-            <md-field>
-                <label>Textarea</label>
-                <md-textarea v-model="textarea"></md-textarea>
-            </md-field>
-        </div>
-    </form>
+                <md-button style="width: 100%" class="md-raised md-accent">Send form</md-button>
+            </div>
+            <div class="md-layout-item" action="">
+                <md-field>
+                    <label>Name</label>
+                    <md-input></md-input>
+                </md-field>
+                <md-field>
+                    <label>Age</label>
+                    <md-input></md-input>
+                </md-field>
+                
 
-    
-  </div>
+                <md-field>
+                    <label>Phone number</label>
+                    <md-input  type="number"></md-input>
+                </md-field>
+
+                <md-field>
+                    <label>Rating</label>
+                    <md-input  type="number"></md-input>
+                </md-field>
+
+                
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      type: null,
-      number: null,
-      textarea: null,
-    })
-  }
+export default {
+    data(){
+        return {
+            s: this.$store.state.s
+        }
+    }
+}
 </script>
 
 <style lang="scss">

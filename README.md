@@ -11,6 +11,7 @@ This web-app is used to create two different football teams and store data about
 - 404 page
 - Icons to header menu
 - Firebase
+- На странице добавления игрока поправить верстку textarea
 
 
 ## Project setup
