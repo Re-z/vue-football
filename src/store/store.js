@@ -4,11 +4,18 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules: {},
-    actions: {},
-    state: {
-        s: 'hello from vuex'
+    actions: {
+        // addNewPlayer(){
+        //     alert(1)
+        // }
     },
-    mutations: {}
+    state: {
+        // s: 'hello from vuex'
+    },
+    mutations: {},
+    modules: {},
+    getters: {
+
+    }
 
 })

@@ -23,7 +23,8 @@ export default {
     async created(){
         let response = await fetch('https://vue-football-83475.firebaseio.com/players.json');
         let data = await response.json();
-        console.log(data);
+        
+        console.log( data )
     }
 };
 

@@ -12,6 +12,8 @@ This web-app is used to create two different football teams and store data about
 - Icons to header menu
 - Firebase
 - На странице добавления игрока поправить верстку textarea
+- Сделать проверку валидации на странице добавления нового игрока
+- На странице добавления нового игрока сделать проверку на заполнение всех полей формы и не пускать дальше, если есть незаполненные поля (как на сайте с театром)
 
 
 ## Project setup
