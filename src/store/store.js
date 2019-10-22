@@ -5,12 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     actions: {
-        // addNewPlayer(){
-        //     alert(1)
-        // }
+        async addNewPlayer(state, newPlayer){
+            // sending form data to server
+            let data = fetch('https://vue-football-83475.firebaseio.com/players.json', {
+                method: 'POST',
+                body: JSON.stringify(newPlayer),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            let response = await data;
+            if(response.ok === true) {
+                alert('success')
+            } else {
+                alert('Wrong')
+            }
+            console.log(response)
+        }
     },
     state: {
-        // s: 'hello from vuex'
+        
     },
     mutations: {},
     modules: {},

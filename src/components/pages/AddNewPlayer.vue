@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-                <!-- <h2>{{ s }}</h2> -->
 
         <form class="md-layout md-gutter" @submit.prevent="addNewPlayer()">
 
@@ -27,7 +26,6 @@
                     <label>Phone number</label>
                     <md-input v-model="newPlayer.phoneNumber" type="number"></md-input>
                 </md-field>
-
                 <md-field>
                     <label>Rating</label>
                     <md-input v-model="newPlayer.rating" type="number" required></md-input>
@@ -52,21 +50,8 @@ export default {
         }
     },
     methods: {
-        async addNewPlayer(){
-            // sending form data to server
-            let data = fetch('https://vue-football-83475.firebaseio.com/players.json', {
-                method: 'POST',
-                body: JSON.stringify(this.newPlayer),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            let response = await data;
-            if(response.ok === true) {
-                alert('success')
-            } else {
-                alert('Wrong')
-            }
+        addNewPlayer() {
+            this.$store.dispatch('addNewPlayer', this.newPlayer)
             // reseting form fields
             this.newPlayer.name = this.newPlayer.age = this.newPlayer.phoneNumber = this.newPlayer.rating = this.newPlayer.aboutInfo = ''
         }
