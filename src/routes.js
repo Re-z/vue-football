@@ -1,6 +1,6 @@
 
-import GenerateTeamsPage from './components/pages/GenerateTeams'
-import AddNewPlayerPage from './components/pages/AddNewPlayer'
+import GenerateTeamsPage from './components/page/GenerateTeams'
+import AddNewPlayerPage from './components/page/AddNewPlayer'
 
 
 const routes = [

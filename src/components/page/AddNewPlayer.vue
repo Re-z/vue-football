@@ -8,7 +8,6 @@
                 <md-field>
                     <md-textarea  placeholder="About info" v-model="newPlayer.aboutInfo" required></md-textarea>
                 </md-field>
-
                 <md-button type="submit" style="width: 100%" class="md-raised md-accent">Send form</md-button>
             </div>
             <div class="md-layout-item">

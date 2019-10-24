@@ -9,7 +9,6 @@
 
         <app-footer></app-footer>
 
-    
     </div>
 
 
