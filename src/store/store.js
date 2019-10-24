@@ -20,16 +20,22 @@ export default new Vuex.Store({
             } else {
                 alert('Wrong')
             }
-            console.log(response)
+            // console.log(response)
         }
     },
     state: {
-        
+        players: []
     },
-    mutations: {},
+    mutations: {
+        updatePlayers(state, players) {
+            state.players = players
+        }
+    },
     modules: {},
     getters: {
-
+        getPlayersList(state){
+            return state.players
+        }
     }
 
 })
