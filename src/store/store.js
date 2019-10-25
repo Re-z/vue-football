@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { stat } from 'fs';
 
 Vue.use(Vuex)
 
@@ -20,7 +21,6 @@ export default new Vuex.Store({
             } else {
                 alert('Wrong')
             }
-            
         },
         async getPlayersFromDB(state){
 
@@ -34,22 +34,40 @@ export default new Vuex.Store({
                     ...players[player],
                     id: player
             })
-            state.commit('updatePlayers',list)
+            state.commit('updateAllPlayers',list)
            }
         }
     },
     state: {
-        players: []
+        allPlayers: [],
+        teams: {
+            willPlayPlayers: []
+        }
     },
     mutations: {
-        updatePlayers(state, players) {
-            state.players = players
+        updateAllPlayers(state, players) {
+            state.allPlayers = players
+        },
+        updateWillPlayPlayers(state,player) {
+            // returns index of el if el already exists in array, or -1 if it doesnt
+            let index = state.teams.willPlayPlayers.indexOf(player)
+            
+            // check if array already contains this player
+            if(index >= 0) {
+                // if it does - remove this player from array
+                state.teams.willPlayPlayers.splice(index, 1);
+            } else {
+                // if it doesnt - add player to willPlayPlayers array
+                state.teams.willPlayPlayers.push(player);
+            }
+            console.log(state.teams.willPlayPlayers);
         }
+        
     },
     modules: {},
     getters: {
         getPlayersList(state){
-            return state.players
+            return state.allPlayers
         }
     }
 

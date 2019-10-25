@@ -15,8 +15,8 @@ import 'vue-material/dist/theme/black-green-dark.css' // This line here
 import Header from './components/parts/Header'
 import Footer from './components/parts/Footer'
 
-import GenerateTeamsPage from './components/pages/GenerateTeams'
-import AddNewPlayerPage from './components/pages/AddNewPlayer'
+import GenerateTeamsPage from './components/testName/GenerateTeams'
+import AddNewPlayerPage from './components/testName/AddNewPlayer'
 
 Vue.component('app-header', Header);
 Vue.component('app-footer', Footer);

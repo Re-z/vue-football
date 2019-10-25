@@ -11,21 +11,19 @@
                         <md-card-header-text>
                             <div class="md-title">{{ player.name }}</div>
                         </md-card-header-text>
-
                         <md-card-media>
                             <img 
                                 class="player-img"
                                 :src="require(`@/assets/img/players/${player.name}.jpg`)" 
                                 :alt="player.name"
                             >
-
                         </md-card-media>
                     </md-card-header>
 
                     <md-card-actions class="md-card-actions md-alignment-left">
                         <md-button 
                             class="md-raised md-accent"
-                            @click="addPlayer"
+                            @click="addPlayer($event, player)"
                         >Add</md-button>
                         <!-- <md-button>Info</md-button> -->
                         <!-- <md-button style="background: tomato">Delete</md-button> -->
@@ -37,28 +35,29 @@
     </main>
 </template>
 
-
 <script>
 import { mapGetters } from 'vuex'
 
 export default {
     data(){
         return {
-            willPlayPlayer: []
+            
         }
     },
+    
     computed: {
         ...mapGetters([
             'getPlayersList',
         ])
     },
     methods: {
-        addPlayer(ev){
+        addPlayer(ev, player){
             this.changeBtnColor(ev);
             this.changeBtnText(ev);
-            
-                
+
+            this.$store.commit('updateWillPlayPlayers', player)
         },
+        
         //need to review
         changeBtnColor(ev){
             if(ev.target.closest('.md-button').classList.contains('btn-selected')) {
@@ -85,14 +84,11 @@ export default {
                 }
             }
         },
-        addWillPlayPlayer(playerObj){
-            this.willPlayPlayer.push(playerObj)
-        }
     },
 
    async created() {
 
-        this.$store.dispatch('getPlayersFromDB')
+        this.$store.dispatch('getPlayersFromDB');
 
     }
 }

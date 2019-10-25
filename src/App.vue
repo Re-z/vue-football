@@ -10,21 +10,13 @@
         <app-footer></app-footer>
 
     </div>
-
-
-
 </template>
 
 <script>
 
 export default {
-
-    // async created(){
-    //     let response = await fetch('https://vue-football-83475.firebaseio.com/players.json');
-    //     let data = await response.json();
-        
-    //     console.log( data )
-    // }
+    
+    
     
 };
 
@@ -36,7 +28,6 @@ export default {
     margin: 0 auto;
 }
 
-
 .ss {
     height: 100vh;   
     display: flex;
@@ -46,6 +37,5 @@ export default {
 .router-link-exact-active {
     background: lightgray !important
 }
-
 
 </style>
