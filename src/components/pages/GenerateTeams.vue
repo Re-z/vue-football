@@ -2,7 +2,6 @@
     <main>
         <div class="container">
 
-
             <div class="md-layout md-gutter" >
                 <md-card 
                     v-for="player in getPlayersList" :key="player.id"
@@ -14,19 +13,25 @@
                         </md-card-header-text>
 
                         <md-card-media>
-                            <img src="https://www.placecage.com/200/200" :alt="player.name">
+                            <img 
+                                class="player-img"
+                                :src="require(`@/assets/img/players/${player.name}.jpg`)" 
+                                :alt="player.name"
+                            >
+
                         </md-card-media>
                     </md-card-header>
 
-                    <md-card-actions>
+                    <md-card-actions class="md-card-actions md-alignment-left">
                         <md-button 
                             class="md-raised md-accent"
                             @click="addPlayer"
                         >Add</md-button>
-                        <md-button>Info</md-button>
-                        <md-button style="background: tomato">Delete</md-button>
+                        <!-- <md-button>Info</md-button> -->
+                        <!-- <md-button style="background: tomato">Delete</md-button> -->
                     </md-card-actions>
                 </md-card>
+
             </div>
         </div>
     </main>
@@ -37,6 +42,11 @@
 import { mapGetters } from 'vuex'
 
 export default {
+    data(){
+        return {
+            willPlayPlayer: []
+        }
+    },
     computed: {
         ...mapGetters([
             'getPlayersList',
@@ -45,7 +55,8 @@ export default {
     methods: {
         addPlayer(ev){
             this.changeBtnColor(ev);
-            this.changeBtnText(ev)
+            this.changeBtnText(ev);
+            
                 
         },
         //need to review
@@ -73,23 +84,16 @@ export default {
                     btn.textContent = 'Add'
                 }
             }
+        },
+        addWillPlayPlayer(playerObj){
+            this.willPlayPlayer.push(playerObj)
         }
     },
 
    async created() {
-       //initial print of players
-       const data = await fetch('https://vue-football-83475.firebaseio.com/players.json');
-       const players = await data.json();
 
-           const list = [];
-           for (let player in players) {
-               list.push({
-                   ...players[player],
-                   id: player
-               })
-           }
-        // and pushing players to Vuex
-        this.$store.commit('updatePlayers', list);
+        this.$store.dispatch('getPlayersFromDB')
+
     }
 }
 </script>
@@ -104,5 +108,10 @@ export default {
     }
     .btn-selected {
         background: yellow !important
+    }
+    .player-img {
+        display: inline-block;
+        border-radius: 50%;
+
     }
 </style>

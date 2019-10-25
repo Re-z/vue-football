@@ -20,7 +20,22 @@ export default new Vuex.Store({
             } else {
                 alert('Wrong')
             }
-            // console.log(response)
+            
+        },
+        async getPlayersFromDB(state){
+
+            //initial print of players
+            const data = await fetch('https://vue-football-83475.firebaseio.com/players.json');
+            const players = await data.json();
+
+            const list = [];
+            for (let player in players) {
+                list.push({
+                    ...players[player],
+                    id: player
+            })
+            state.commit('updatePlayers',list)
+           }
         }
     },
     state: {
