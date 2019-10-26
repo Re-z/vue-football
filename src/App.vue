@@ -1,4 +1,5 @@
 <template>
+
     <div id="app" class="ss">
         <app-header></app-header>
 
@@ -22,12 +23,17 @@
                     <md-toolbar class="md-transparent" md-elevation="0">
                         <span class="md-headline">Will play players:</span>
                     </md-toolbar>
-
                     <md-list>
-                        <md-list-item v-for="player in getWillPlayPlayers" :key="player.id">
-                            <span class="md-list-item-text md-title font-weight-normal">{{player.name}}</span>
-                            <md-icon>send</md-icon>
+                        <md-list-item @click="alert" v-for="player in getWillPlayPlayers" :key="player.id">
+                            <span 
+                                class="md-list-item-text md-title font-weight-normal">
+                                {{player.name}}
+                            </span>
+                            <!-- <md-button class="md-icon-button md-list-action"> -->
+                            <md-icon :md-src="require('./assets/img/delete.svg')"></md-icon>
+                            <!-- </md-button> -->
                         </md-list-item>
+
                     </md-list>
                 </div>
 
@@ -92,6 +98,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 .sidebar {
     // height: 100%;
     display: flex;
@@ -129,7 +136,7 @@ export default {
     max-width: calc(100vw - 125px);
 }
 .font-weight-normal {
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 </style>
