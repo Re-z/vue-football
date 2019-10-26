@@ -2,9 +2,9 @@
     <header class="header">
         <div class="container">
             
-            <md-button exact to="/" class="md-raised md-accent">Generate Teams</md-button>
-            <md-button exact to="/add-new-player" class="md-raised md-accent">Add new player</md-button>
-            <md-button class="md-raised md-accent">Statistics</md-button>
+            <md-button exact to="/" class="md-raised">Generate Teams</md-button>
+            <md-button exact to="/add-new-player" class="md-raised">Add new player</md-button>
+            <md-button class="md-raised">Statistics</md-button>
 
         </div>
     </header>

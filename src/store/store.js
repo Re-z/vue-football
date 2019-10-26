@@ -36,18 +36,24 @@ export default new Vuex.Store({
             })
             state.commit('updateAllPlayers',list)
            }
-        }
+        },
+        checkIfPlayerWillPlay(state, player) {
+            let index = state.teams.willPlayPlayers.indexOf(player)
+            return index >= 0 ? true : false;
+        },
     },
     state: {
         allPlayers: [],
         teams: {
             willPlayPlayers: []
-        }
+        },
+        sidebarVisible: true
     },
     mutations: {
         updateAllPlayers(state, players) {
             state.allPlayers = players
         },
+        
         updateWillPlayPlayers(state,player) {
             // returns index of el if el already exists in array, or -1 if it doesnt
             let index = state.teams.willPlayPlayers.indexOf(player)
@@ -60,15 +66,21 @@ export default new Vuex.Store({
                 // if it doesnt - add player to willPlayPlayers array
                 state.teams.willPlayPlayers.push(player);
             }
-            console.log(state.teams.willPlayPlayers);
+            // console.log(state.teams.willPlayPlayers);
+            
+        },
+        clearWillPlayPlayers(state) {
+            state.teams.willPlayPlayers = []
         }
-        
     },
     modules: {},
     getters: {
         getPlayersList(state){
             return state.allPlayers
-        }
+        },
+        getWillPlayPlayers(state){
+            return state.teams.willPlayPlayers
+        },
     }
 
 })

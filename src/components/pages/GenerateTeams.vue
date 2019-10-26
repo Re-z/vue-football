@@ -22,11 +22,12 @@
 
                     <md-card-actions class="md-card-actions md-alignment-left">
                         <md-button 
-                            class="md-raised md-accent"
+                            class="md-primary"
                             @click="addPlayer($event, player)"
-                        >Add</md-button>
-                        <!-- <md-button>Info</md-button> -->
-                        <!-- <md-button style="background: tomato">Delete</md-button> -->
+                            :class="selectPlayerBtnClass(player)"
+                            >
+                        {{selectPlayerBtnText(player)}}
+                        </md-button>
                     </md-card-actions>
                 </md-card>
 
@@ -39,52 +40,35 @@
 import { mapGetters } from 'vuex'
 
 export default {
-    data(){
-        return {
-            
-        }
-    },
     
     computed: {
         ...mapGetters([
             'getPlayersList',
+            'getWillPlayPlayers'
         ])
     },
     methods: {
+        // if player is chosen to getWillPlayPlayers array - change btn color
+        selectPlayerBtnClass(player){
+            if(this.getWillPlayPlayers.indexOf(player) >= 0) {
+                return 'md-raised md-accent' //упростить?
+            } else {
+                return 'btn-not-selected'
+            }
+        },
+        // if player is chosen to getWillPlayPlayers array - change btn text
+        selectPlayerBtnText(player){
+             if(this.getWillPlayPlayers.indexOf(player) >= 0) {
+                return 'In Game' //упростить?
+            } else {
+                return 'Add'
+            }
+        },
         addPlayer(ev, player){
-            this.changeBtnColor(ev);
-            this.changeBtnText(ev);
-
-            this.$store.commit('updateWillPlayPlayers', player)
-        },
-        
-        //need to review
-        changeBtnColor(ev){
-            if(ev.target.closest('.md-button').classList.contains('btn-selected')) {
-                ev.target.closest('.md-button').classList.remove('btn-selected');
-            } else {
-                ev.target.closest('.md-button').classList.add('btn-selected');
-            }
-        },
-        //need to review
-        changeBtnText(ev) {
-            const newBtnText = 'In Game!';
-            if(ev.target.classList.contains('md-button-content')){
-                if(ev.target.textContent === 'Add') {
-                    ev.target.textContent = newBtnText
-                } else {
-                    ev.target.textContent = 'Add'
-                }
-            } else {
-                let btn = ev.target.querySelector('.md-button-content');
-                if(btn.textContent === 'Add') {
-                    btn.textContent = newBtnText
-                } else {
-                    btn.textContent = 'Add'
-                }
-            }
+            this.$store.commit('updateWillPlayPlayers', player);
         },
     },
+    
 
    async created() {
 
@@ -102,12 +86,15 @@ export default {
     .md-layout-item {
         margin-bottom: 42px;
     }
-    .btn-selected {
+    .btn-player-selected {
         background: yellow !important
     }
     .player-img {
         display: inline-block;
         border-radius: 50%;
-
     }
+    .btn-not-selected {
+        background: lightgray !important;
+    }
+    
 </style>
