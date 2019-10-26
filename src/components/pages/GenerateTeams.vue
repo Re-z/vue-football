@@ -53,7 +53,7 @@ export default {
             if(this.getWillPlayPlayers.indexOf(player) >= 0) {
                 return 'md-raised md-accent' //упростить?
             } else {
-                return 'btn-not-selected'
+                return 'btn-custom-color'
             }
         },
         // if player is chosen to getWillPlayPlayers array - change btn text
@@ -93,7 +93,7 @@ export default {
         display: inline-block;
         border-radius: 50%;
     }
-    .btn-not-selected {
+    .btn-custom-color {
         background: lightgray !important;
     }
     

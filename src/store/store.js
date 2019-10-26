@@ -41,13 +41,26 @@ export default new Vuex.Store({
             let index = state.teams.willPlayPlayers.indexOf(player)
             return index >= 0 ? true : false;
         },
+        generateTeams(state){
+            //какого хрена нужно обращаться state.state 2 раза??
+            let numberOfWillPlayPlayers = state.state.teams.willPlayPlayers.length
+            
+            if(numberOfWillPlayPlayers === 10) {
+                alert(10)
+            } else {
+                state.state.alertPopup.isVisible = true;
+            }
+        }
     },
     state: {
         allPlayers: [],
         teams: {
             willPlayPlayers: []
         },
-        sidebarVisible: true
+        sidebarVisible: true,
+        alertPopup: {
+            isVisible: false
+        }
     },
     mutations: {
         updateAllPlayers(state, players) {
@@ -71,6 +84,9 @@ export default new Vuex.Store({
         },
         clearWillPlayPlayers(state) {
             state.teams.willPlayPlayers = []
+        },
+        closeAlertPopup(state) {
+            state.alertPopup.isVisible = false
         }
     },
     modules: {},
@@ -81,6 +97,9 @@ export default new Vuex.Store({
         getWillPlayPlayers(state){
             return state.teams.willPlayPlayers
         },
+        getAlertPopupStatus(state) {
+            return state.alertPopup.isVisible
+        }
     }
 
 })

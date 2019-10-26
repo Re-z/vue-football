@@ -2,25 +2,45 @@
     <div id="app" class="ss">
         <app-header></app-header>
 
+        <md-dialog :md-active.sync="getAlertPopupStatus">
+            <md-dialog-title class>Sorry :(</md-dialog-title>
+            <md-dialog-content class="md-title">The number of players should be 10</md-dialog-content>
+
+            <md-dialog-actions>
+                <md-button 
+                    class="md-primary btn-custom-color"
+                    @click="closeAlertPopup">
+                    Ok
+                </md-button>
+            </md-dialog-actions>
+        </md-dialog>
+
+
         <md-app>
             <md-app-drawer class="sidebar" :md-active.sync="getWillPlayPlayers.length > 0" md-persistent="full">
                 <div class="sidebar-default">
                     <md-toolbar class="md-transparent" md-elevation="0">
-                        <span class="md-title">Will play players</span>
+                        <span class="md-headline">Will play players:</span>
                     </md-toolbar>
 
                     <md-list>
                         <md-list-item v-for="player in getWillPlayPlayers" :key="player.id">
-                            <span class="md-list-item-text">{{player.name}}</span>
+                            <span class="md-list-item-text md-title font-weight-normal">{{player.name}}</span>
                             <md-icon>send</md-icon>
                         </md-list-item>
                     </md-list>
                 </div>
 
                 <div class="sidebar__custom ">
-
                     <div class="md-toolbar">
-                        <md-button class="sidebar__btn md-raised md-accent">Generate Teams!</md-button>
+                        <p class="md-title">Number of will play players: <strong>{{getWillPlayPlayers.length}}</strong></p>
+                    </div>
+                    <div class="md-toolbar">
+                        <md-button
+                            class="sidebar__btn md-raised md-accent"
+                            @click="generateTeams"
+                            >Generate Teams!
+                        </md-button>
                     </div>
                     <div class="md-toolbar">
                         <md-button 
@@ -42,6 +62,7 @@
 
         <app-footer></app-footer>
 
+
     </div>
 </template>
 
@@ -51,12 +72,19 @@ export default {
     
     computed: mapGetters([
         'getWillPlayPlayers',
-        'getSidebarStatus'
+        'getSidebarStatus',
+        'getAlertPopupStatus',
     ]),
     methods: {
         clearWillPlayPlayers() {
             this.$store.commit('clearWillPlayPlayers')
         },
+        closeAlertPopup(){
+            this.$store.commit('closeAlertPopup')
+        },
+        generateTeams() {
+            this.$store.dispatch('generateTeams')
+        }
     },
     
 };
@@ -99,6 +127,9 @@ export default {
 .md-drawer {
     width: 230px;
     max-width: calc(100vw - 125px);
+}
+.font-weight-normal {
+    font-weight: 300;
 }
 
 </style>
