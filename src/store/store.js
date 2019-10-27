@@ -46,7 +46,17 @@ export default new Vuex.Store({
             let numberOfWillPlayPlayers = state.state.teams.willPlayPlayers.length
             
             if(numberOfWillPlayPlayers === 10) {
-                alert(10)
+                //cloning willPlayPlayers arr
+                let willPlayPlayersSuffled = state.state.teams.willPlayPlayers.slice(0);
+                //sorting it
+                willPlayPlayersSuffled.sort(function() { return 0.5 - Math.random() });
+                console.log(willPlayPlayersSuffled);
+                let team1 = willPlayPlayersSuffled.slice(0,5); //first 5 players in array - is a first team
+                let team2 = willPlayPlayersSuffled.slice(5,10); //last 5 players in array - is a second team
+                state.state.teams.team1 = team1;
+                state.state.teams.team2 = team2;
+                state.commit('showResultPopup')
+
             } else {
                 state.state.alertPopup.isVisible = true;
             }
@@ -55,13 +65,17 @@ export default new Vuex.Store({
     state: {
         allPlayers: [],
         teams: {
-            willPlayPlayers: []
+            willPlayPlayers: [],
+            team1: [],
+            team2: [],
+            isResultPopupShowed: false
         },
         sidebarVisible: true,
         alertPopup: {
             isVisible: false
         }
     },
+
     mutations: {
         updateAllPlayers(state, players) {
             state.allPlayers = players
@@ -87,6 +101,12 @@ export default new Vuex.Store({
         },
         closeAlertPopup(state) {
             state.alertPopup.isVisible = false
+        },
+        showResultPopup(state) {
+            state.teams.isResultPopupShowed = true
+        },
+        closeResultPopup(state) {
+            state.teams.isResultPopupShowed = false
         }
     },
     modules: {},
@@ -99,7 +119,17 @@ export default new Vuex.Store({
         },
         getAlertPopupStatus(state) {
             return state.alertPopup.isVisible
+        },
+        getTeam1(state) {
+            return state.teams.team1
+        },
+        getTeam2(state) {
+            return state.teams.team2
+        },
+        getResultPopupStatus(state) {
+            return state.teams.isResultPopupShowed;
         }
+
     }
 
 })

@@ -2,7 +2,7 @@
 
     <div id="app" class="ss">
         <app-header></app-header>
-
+        <!-- dialog with error -->
         <md-dialog :md-active.sync="getAlertPopupStatus">
             <md-dialog-title class>Sorry :(</md-dialog-title>
             <md-dialog-content class="md-title">The number of players should be 10</md-dialog-content>
@@ -11,10 +11,70 @@
                 <md-button 
                     class="md-primary btn-custom-color"
                     @click="closeAlertPopup">
-                    Ok
+                    Ok!
                 </md-button>
             </md-dialog-actions>
         </md-dialog>
+
+
+
+        <!-- results block -->
+        <md-dialog :md-active.sync="getResultPopupStatus">
+            <div class="result-box">
+                <div class="result-box__item">
+                    <md-dialog-title>Team 1</md-dialog-title>
+
+                    <md-card 
+                        class="md-primary" 
+                        md-theme="green-card"
+                        v-for="player in getTeam1" :key="player.id"
+                    >
+                        <md-card-header>
+                            <md-card-header-text>
+                                <div class="md-title">{{player.name}}</div>
+                            </md-card-header-text>
+                            <md-card-media>
+                                <img  :src="require(`@/assets/img/players/${player.name}.jpg`)"  :alt="player.name">
+                            </md-card-media>
+                        </md-card-header>
+                    </md-card>
+                </div>
+                <div class="result-box__vs">
+                    VS 
+                </div>
+                <div class="result-box__item">
+                    <md-dialog-title>Team 2</md-dialog-title>
+
+                     <md-card 
+                        class="md-primary" 
+                        md-theme="green-card"
+                        v-for="player in getTeam2" :key="player.id"
+                    >
+                        <md-card-header>
+                            <md-card-media>
+                                <img  :src="require(`@/assets/img/players/${player.name}.jpg`)"  :alt="player.name">
+                            </md-card-media>
+                            <md-card-header-text>
+                                <div class="md-title">{{player.name}}</div>
+                            </md-card-header-text>
+                        </md-card-header>
+                    </md-card>
+                </div>
+            </div>
+
+            <md-dialog-actions>
+                <md-button 
+                    class="md-primary btn-custom-color"
+                    @click="closeResultPopup">
+                    Ok
+
+                </md-button>
+            </md-dialog-actions>
+        </md-dialog>
+
+
+
+
 
 
         <md-app>
@@ -24,10 +84,12 @@
                         <span class="md-headline">Will play players:</span>
                     </md-toolbar>
                     <md-list>
-                        <md-list-item @click="alert" v-for="player in getWillPlayPlayers" :key="player.id">
+                        <md-list-item @click="updateWillPlayPlayers(player)" v-for="player in getWillPlayPlayers" :key="player.id">
+                            <md-tooltip md-direction="bottom">Remove this player</md-tooltip>
                             <span 
                                 class="md-list-item-text md-title font-weight-normal">
                                 {{player.name}}
+
                             </span>
                             <!-- <md-button class="md-icon-button md-list-action"> -->
                             <md-icon :md-src="require('./assets/img/delete.svg')"></md-icon>
@@ -38,8 +100,10 @@
                 </div>
 
                 <div class="sidebar__custom ">
+                    
+
                     <div class="md-toolbar">
-                        <p class="md-title">Number of will play players: <strong>{{getWillPlayPlayers.length}}</strong></p>
+                        <p class="md-title">Number of will play players: <strong>{{getWillPlayPlayers.length}} of 10</strong></p>
                     </div>
                     <div class="md-toolbar">
                         <md-button
@@ -78,8 +142,11 @@ export default {
     
     computed: mapGetters([
         'getWillPlayPlayers',
-        'getSidebarStatus',
+        // 'getSidebarStatus',
         'getAlertPopupStatus',
+        'getTeam1',
+        'getTeam2',
+        'getResultPopupStatus',
     ]),
     methods: {
         clearWillPlayPlayers() {
@@ -90,6 +157,13 @@ export default {
         },
         generateTeams() {
             this.$store.dispatch('generateTeams')
+        },
+        updateWillPlayPlayers(player){
+            this.$store.commit('updateWillPlayPlayers',player)
+        },
+        closeResultPopup(){
+            this.$store.commit('closeResultPopup');
+            this.$store.commit('clearWillPlayPlayers')
         }
     },
     
@@ -110,6 +184,13 @@ export default {
         &_warning {
             background: tomato !important;
         }
+    }
+}
+.result-box {
+    display: flex;
+    justify-content: space-between;
+    &__vs {
+        align-self: center
     }
 }
 .container {
