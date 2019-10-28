@@ -9,6 +9,7 @@
                     <md-card-header>
                         <md-card-header-text>
                             <div class="md-title">{{ player.name }}</div>
+                            <div class="md-subhead">{{ player.age }} years old </div>
                         </md-card-header-text>
                         <md-card-media>
                             <img 
@@ -69,11 +70,7 @@ export default {
     },
     
 
-   async created() {
-
-        this.$store.dispatch('getPlayersFromDB');
-
-    }
+   
 }
 </script>
 
@@ -92,8 +89,7 @@ export default {
         // display: inline-block;
         // border-radius: 50%;
     }
-    .btn-custom-color {
-        background: lightgray !important;
-    }
+    
+    
     
 </style>

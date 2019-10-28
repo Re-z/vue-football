@@ -1,6 +1,7 @@
 
-import GenerateTeamsPage from './components/pages/GenerateTeams'
-import AddNewPlayerPage from './components/pages/AddNewPlayer'
+import GenerateTeamsPage from './components/GenerateTeams'
+import ManagePlayers from './components/ManagePlayers'
+
 
 
 const routes = [
@@ -9,8 +10,10 @@ const routes = [
         component: GenerateTeamsPage
     },
     {
-        path: '/add-new-player',
-        component: AddNewPlayerPage
+        path: '/manage-players',
+        component: ManagePlayers
     },
+    
 ]
 export default routes;
+

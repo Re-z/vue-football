@@ -1,10 +1,8 @@
 <template>
-    <div class="container">
-
         <form class="md-layout md-gutter" @submit.prevent="addNewPlayer()">
 
             <div class="md-layout-item md-size-25">
-                <img src="../../assets/img/avatar.jpg" class="form-img" alt="">
+                <img src="../assets/img/avatar.jpg" class="form-img" alt="">
                 <md-field>
                     <md-textarea  placeholder="About info" v-model="newPlayer.aboutInfo" required></md-textarea>
                 </md-field>
@@ -32,7 +30,6 @@
                 
             </div>
         </form>
-    </div>
 </template>
 <script>
 export default {
@@ -56,11 +53,11 @@ export default {
     }
 }
 </script>
-
 <style lang="scss">
     .form-img {
         display: block;
         border-radius: 50%;
         margin: 0 auto 15px auto;
     }
+    
 </style>

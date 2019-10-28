@@ -127,7 +127,7 @@
                     </div>
                     <div class="md-toolbar">
                         <md-button 
-                            class="sidebar__btn sidebar__btn_warning md-raised md-accent"
+                            class="sidebar__btn sidebar__btn btn-custom-color-warn md-raised md-accent"
                             @click="clearWillPlayPlayers"
                             >
                             Clear List
@@ -182,6 +182,10 @@ export default {
             this.$store.commit('clearWillPlayPlayers')
         }
     },
+    async created() {
+        console.log(111);
+        this.$store.dispatch('getPlayersFromDB');
+    }
     
 };
 
@@ -197,11 +201,9 @@ export default {
     
     &__btn {
         width: 100%;
-        &_warning {
-            background: tomato !important;
-        }
     }
 }
+
 .result-box {
     display: flex;
     justify-content: space-between;
@@ -259,9 +261,19 @@ export default {
 .md-overlay {
     z-index: 10 !important;
 }
-.md-app-content,.custom-dialog  {
+.md-app-content, .custom-bg, .custom-dialog, .md-tabs-container, .header__tabs .md-tabs-navigation  {
     background: #303030 !important
 
 
 }
+.btn-custom-color {
+        // background: lightgray !important;
+        background: #303030 !important;
+        color: white !important;
+}
+.btn-custom-color-warn {
+    // background: lightgray !important;
+    background: tomato !important;
+}
+
 </style>

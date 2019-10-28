@@ -50,7 +50,7 @@ export default new Vuex.Store({
                 let willPlayPlayersSuffled = state.state.teams.willPlayPlayers.slice(0);
                 //sorting it
                 willPlayPlayersSuffled.sort(function() { return 0.5 - Math.random() });
-                console.log(willPlayPlayersSuffled);
+                // console.log(willPlayPlayersSuffled);
                 let team1 = willPlayPlayersSuffled.slice(0,5); //first 5 players in array - is a first team
                 let team2 = willPlayPlayersSuffled.slice(5,10); //last 5 players in array - is a second team
                 state.state.teams.team1 = team1;
