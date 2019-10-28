@@ -1,5 +1,4 @@
 <template>
-    <main>
         <div class="container">
 
             <div class="md-layout md-gutter" >
@@ -34,7 +33,6 @@
 
             </div>
         </div>
-    </main>
 </template>
 
 <script>
@@ -91,8 +89,8 @@ export default {
         background: yellow !important
     }
     .player-img {
-        display: inline-block;
-        border-radius: 50%;
+        // display: inline-block;
+        // border-radius: 50%;
     }
     .btn-custom-color {
         background: lightgray !important;

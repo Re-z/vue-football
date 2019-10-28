@@ -14,6 +14,6 @@
 <style lang="scss">
     .header {
         padding: 10px 0;
-        border-bottom: 1px solid lightgray
+        border-bottom: 1px solid #424242
     }
 </style>

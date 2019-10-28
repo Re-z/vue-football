@@ -2,27 +2,32 @@
 
     <div id="app" class="ss">
         <app-header></app-header>
+
         <!-- dialog with error -->
         <md-dialog :md-active.sync="getAlertPopupStatus">
-            <md-dialog-title class>Sorry :(</md-dialog-title>
-            <md-dialog-content class="md-title">The number of players should be 10</md-dialog-content>
+            <md-dialog-title class="md-headline ">Sorry :(</md-dialog-title>
+            <md-dialog-content class="md-title">
+               The number of players should be 10
+            </md-dialog-content> 
 
-            <md-dialog-actions>
-                <md-button 
-                    class="md-primary btn-custom-color"
-                    @click="closeAlertPopup">
-                    Ok!
-                </md-button>
+                <md-dialog-actions>
+                    <md-button 
+                        class="md-primary btn-custom-color"
+                        @click="closeAlertPopup">
+                        Ok!
+                    </md-button>
             </md-dialog-actions>
         </md-dialog>
-
-
+   
 
         <!-- results block -->
         <md-dialog :md-active.sync="getResultPopupStatus">
+            <md-dialog-content class="custom-dialog">
+
+            
             <div class="result-box">
                 <div class="result-box__item">
-                    <md-dialog-title>Team 1</md-dialog-title>
+                    <md-dialog-title class="result-box__item-title md-headline">Team 1</md-dialog-title>
 
                     <md-card 
                         class="md-primary" 
@@ -42,8 +47,9 @@
                 <div class="result-box__vs">
                     VS 
                 </div>
+
                 <div class="result-box__item">
-                    <md-dialog-title>Team 2</md-dialog-title>
+                    <md-dialog-title class="result-box__item-title md-headline">Team 2</md-dialog-title>
 
                      <md-card 
                         class="md-primary" 
@@ -51,10 +57,10 @@
                         v-for="player in getTeam2" :key="player.id"
                     >
                         <md-card-header>
-                            <md-card-media>
-                                <img  :src="require(`@/assets/img/players/${player.name}.jpg`)"  :alt="player.name">
+                            <md-card-media class="img-reverse" >
+                                <img :src="require(`@/assets/img/players/${player.name}.jpg`)"  :alt="player.name">
                             </md-card-media>
-                            <md-card-header-text>
+                            <md-card-header-text class="text-reverse">
                                 <div class="md-title">{{player.name}}</div>
                             </md-card-header-text>
                         </md-card-header>
@@ -64,12 +70,19 @@
 
             <md-dialog-actions>
                 <md-button 
+                    class="md-primary md-raised md-accent"
+                    @click="generateTeams">
+                    Regenerate
+                </md-button>
+                
+                <md-button 
                     class="md-primary btn-custom-color"
                     @click="closeResultPopup">
                     Ok
-
                 </md-button>
+                 
             </md-dialog-actions>
+            </md-dialog-content>
         </md-dialog>
 
 
@@ -126,11 +139,14 @@
             </md-app-drawer>
 
             <md-app-content>
+                
                 <router-view></router-view>
+
             </md-app-content>
         </md-app>
-
         <app-footer></app-footer>
+
+
 
 
     </div>
@@ -190,14 +206,34 @@ export default {
     display: flex;
     justify-content: space-between;
     &__vs {
-        align-self: center
+        align-self: center;
+        font-size: 40px;
+        font-weight: bold;
+        margin: 0 20px;
+    }
+    &__item {
+        img {
+            max-height: 80px;
+        }
+    }
+    &__item-title {
+        display: block;
+        text-align: center;
+    }
+    .md-card {
+        background: #424242;
     }
 }
 .container {
     width: 1200px;
     margin: 0 auto;
 }
-
+.img-reverse {
+    margin: 0 16px 0 0 !important;
+}
+.text-reverse {
+    text-align: right !important;
+}
 .ss {
     height: 100vh;   
     display: flex;
@@ -211,6 +247,7 @@ export default {
 .md-app {
     min-height: 350px;
     border: 1px solid rgba(#000, .12);
+    flex-grow: 2
   }
 .md-drawer {
     width: 230px;
@@ -219,5 +256,12 @@ export default {
 .font-weight-normal {
     font-weight: 300 !important;
 }
+.md-overlay {
+    z-index: 10 !important;
+}
+.md-app-content,.custom-dialog  {
+    background: #303030 !important
 
+
+}
 </style>
