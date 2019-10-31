@@ -80,7 +80,6 @@ export default new Vuex.Store({
         updateAllPlayers(state, players) {
             state.allPlayers = players
         },
-        
         updateWillPlayPlayers(state,player) {
             // returns index of el if el already exists in array, or -1 if it doesnt
             let index = state.teams.willPlayPlayers.indexOf(player)

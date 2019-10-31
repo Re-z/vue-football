@@ -183,7 +183,6 @@ export default {
         }
     },
     async created() {
-        console.log(111);
         this.$store.dispatch('getPlayersFromDB');
     }
     

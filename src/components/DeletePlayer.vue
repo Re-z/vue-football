@@ -8,7 +8,7 @@
             md-confirm-text="Yes, delete anyway"
             md-cancel-text="No"
             @md-cancel="cancelDelete"
-            @md-confirm="cancelDelete" 
+            @md-confirm="confirmDeletePlayerFromDB"
         />
 
 
@@ -41,7 +41,7 @@
 
                     <md-button 
                         class="md-primary btn-custom-color-warn"
-                        @click="confirmDeletePopupStatus = true"
+                        @click="deletePlayerFromDB(player)"
                         >
                         Delete
                     </md-button>
@@ -65,6 +65,7 @@ export default {
     data() {
         return {
             confirmDeletePopupStatus: false,
+            playerToDelete: '', //тут будет храниться обьект с юзером, которого нужно удалить
             searchName: ''
         }
     },
@@ -72,6 +73,20 @@ export default {
       cancelDelete() {
           this.confirmDeletePopupStatus = false;
       },
+      deletePlayerFromDB(player) {
+          this.confirmDeletePopupStatus = true;
+          this.playerToDelete = player
+      },
+      //ПЕРЕСМОТРЕТЬ ФУНКЦИОНАЛ И ПРИКРУТИТЬ УДАЛЕНИЕ ИГРОКА НА FIREBASE
+      confirmDeletePlayerFromDB() {
+        const indexOfDeletePlayer = this.getPlayersList.indexOf(this.playerToDelete);
+        //создаем новый массив, в котором нету игрока, которого мы хотим удалить
+        const newPlayerList = this.getPlayersList.filter(el => {
+            return el != this.playerToDelete
+        })
+        // коммитим изменения во vuex
+        this.$store.commit('updateAllPlayers', newPlayerList);
+      }
     },
     computed: {
         ...mapGetters([
