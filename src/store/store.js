@@ -60,6 +60,21 @@ export default new Vuex.Store({
             } else {
                 state.state.alertPopup.isVisible = true;
             }
+        },
+        createPlayerUrl(playerName) {
+            //создает урлу из имени игрока
+            let urlArray = playerName.toLowerCase().split('').map(el => {
+                // сократить ??
+                //  el === " " ? '-' : el 
+                if(el === " ") {
+                    return '-'
+                } else {
+                    return el
+                };
+            });
+            let url = urlArray.join('');
+
+            return url;
         }
     },
     state: {

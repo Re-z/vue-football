@@ -19,6 +19,7 @@ import GenerateTeamsPage from './components/GenerateTeams'
 import ManagePlayers from './components/ManagePlayers'
 import DeletePlayer from './components/DeletePlayer'
 import AddNewPlayer from './components/AddNewPlayer'
+import PlayerPage from './components/PlayerPage'
 
 Vue.component('app-header', Header);
 Vue.component('app-footer', Footer);
@@ -27,6 +28,7 @@ Vue.component('app-manage-players', ManagePlayers)
 Vue.component('app-add-new-player', AddNewPlayer)
 Vue.component('app-delete-player', DeletePlayer)
 Vue.component('app-sidebar', Sidebar)
+Vue.component('app-player-page', PlayerPage)
 
 
 

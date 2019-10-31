@@ -29,6 +29,21 @@
                             >
                         {{selectPlayerBtnText(player)}}
                         </md-button>
+
+                        <!-- При переходе по ссылке также передаем в роутер обьект с текущим игроком -->
+                        <md-button 
+                            class="btn-custom-color2"
+                            :to="{
+                                path: '/player-page',
+                                query: {
+                                    player
+                                }
+                            }"
+                                >
+                            About
+                        </md-button>
+
+
                     </md-card-actions>
                 </md-card>
 

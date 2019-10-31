@@ -6,6 +6,7 @@ This web-app is used to create two different football teams and store data about
 ## Features:
 - Uses Vuex and VueRouter 
 - Uses VueMaterial framework
+- На странице manage players > delete player есть поиск по игроку
 
 ## Todo
 - 404 page
@@ -15,9 +16,10 @@ This web-app is used to create two different football teams and store data about
 - Сделать проверку валидации на странице добавления нового игрока
 - На странице добавления нового игрока сделать проверку на заполнение всех полей формы и не пускать дальше, если есть незаполненные поля (как на сайте с театром)
 - Когда добавляешь нового игрока - автоматически заполняется disabled поле с его url страничкой
-- Сделать поиск по игроку
 - Сделать адаптивку под маки
 - Переписать скрипт рандомизации массива выбранных игроков (есть подозрения, что криво шаффлит)
+- Сделать статичный урл для каждого игрока
+
 
 
 ## Project setup

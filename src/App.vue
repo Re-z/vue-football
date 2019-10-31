@@ -184,7 +184,8 @@ export default {
     },
     async created() {
         this.$store.dispatch('getPlayersFromDB');
-    }
+    },
+    
     
 };
 
@@ -266,13 +267,21 @@ export default {
 
 }
 .btn-custom-color {
-        // background: lightgray !important;
-        background: #303030 !important;
-        color: white !important;
+    background: #303030 !important;
+    color: white !important;
+}
+.btn-custom-color2 {
+    color: #9D9D9D !important;
+    background-color: #424242 !important; 
+    background-color: var(--md-theme-default-background, #424242) !important;
 }
 .btn-custom-color-warn {
-    // background: lightgray !important;
     background: tomato !important;
 }
-
+.star {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url(./assets/img/star.svg);
+}
 </style>
