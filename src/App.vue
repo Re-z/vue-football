@@ -284,4 +284,7 @@ export default {
         height: 20px;
         background: url(./assets/img/star.svg);
 }
+.pointer {
+    cursor: pointer;
+}
 </style>

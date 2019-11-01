@@ -22,11 +22,11 @@
                 <md-table-row>
                     <md-table-cell >Rating</md-table-cell>
                     <md-table-cell>
-                        <span class="player__rating star"></span>
-                        <span class="player__rating star"></span>
-                        <span class="player__rating star"></span>
-                        <span v-if="player.rating >=6" class="player__rating star"></span>
-                        <span v-if="player.rating >=8" class="player__rating star"></span>
+                        <!-- передаем пропсами обьект с текущим игроком,
+                        а на стороне компонента - отображаем звездочки
+                        в зависимости от рейтинга -->
+                        <app-player-rating :playerObj="player"></app-player-rating>
+
                     </md-table-cell>
                 </md-table-row>
                 <md-table-row>

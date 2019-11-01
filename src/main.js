@@ -20,6 +20,8 @@ import ManagePlayers from './components/ManagePlayers'
 import DeletePlayer from './components/DeletePlayer'
 import AddNewPlayer from './components/AddNewPlayer'
 import PlayerPage from './components/PlayerPage'
+import AllPlayersInfo from './components/AllPlayersInfo'
+import PlayerRating from './components/PlayerRating'
 
 Vue.component('app-header', Header);
 Vue.component('app-footer', Footer);
@@ -29,6 +31,9 @@ Vue.component('app-add-new-player', AddNewPlayer)
 Vue.component('app-delete-player', DeletePlayer)
 Vue.component('app-sidebar', Sidebar)
 Vue.component('app-player-page', PlayerPage)
+Vue.component('app-player-page', PlayerPage)
+Vue.component('app-allplayers-info', AllPlayersInfo)
+Vue.component('app-player-rating', PlayerRating)
 
 
 

@@ -2,6 +2,7 @@
 import GenerateTeamsPage from './components/GenerateTeams'
 import ManagePlayers from './components/ManagePlayers'
 import PlayerPage from './components/PlayerPage'
+import AllPlayersInfo from './components/AllPlayersInfo'
 
 
 
@@ -17,6 +18,10 @@ const routes = [
     {
         path: '/player-page',
         component: PlayerPage
+    },
+    {
+        path: '/all-players-info',
+        component: AllPlayersInfo
     },
     
 ]

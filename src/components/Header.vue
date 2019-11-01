@@ -3,6 +3,7 @@
         <div class="container">
             <md-tabs class="header__tabs">
                 <md-tab exact to="/" class="md-raised" md-label="Generate Teams"></md-tab>
+                <md-tab exact to="/all-players-info" class="md-raised" md-label="All players info"></md-tab>
                 <md-tab exact to="/manage-players" class="md-raised" md-label="Manage Players"></md-tab>
             </md-tabs>
             <!-- <md-button exact to="/" class="md-raised">Generate Teams</md-button>
