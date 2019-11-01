@@ -7,9 +7,10 @@ This web-app is used to create two different football teams and store data about
 - Uses Vuex and VueRouter 
 - Uses VueMaterial framework
 - На странице manage players > delete player есть поиск по игроку
+- 404 page
+
 
 ## Todo
-- 404 page
 - Icons to header menu
 - Firebase
 - На странице добавления игрока поправить верстку textarea

@@ -9,7 +9,7 @@
             <md-table-head>ID</md-table-head>
             <md-table-head>Name</md-table-head>
             <md-table-head>Rating</md-table-head>
-            <md-table-head class="pointer" @click="sorting">Age</md-table-head>
+            <md-table-head>Age</md-table-head>
             <md-table-head>Firebase ID</md-table-head>
             <md-table-head>Profile link</md-table-head>
         </md-table-row>
@@ -65,11 +65,7 @@ export default {
             })
         }
     },
-    methods: {
-        sorting() {
-            alert(1)
-        }
-    },
+   
 
 }
 </script>
