@@ -35,9 +35,7 @@
                             class="btn-custom-color2"
                             :to="{
                                 path: '/player-page',
-                                query: {
-                                    player
-                                }
+                                
                             }"
                                 >
                             About

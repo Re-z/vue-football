@@ -54,7 +54,6 @@ export default {
     },
     created() {
         this.player = this.$route.query.player;
-        console.log(this.player);
     },
     
 

@@ -1,9 +1,18 @@
 <template>
-    <div class="container">
-        <md-field class="md-layout-item md-size-30">
-            <label>Search by name</label>
-            <md-input v-model="searchName"></md-input>
-        </md-field>
+    <div class="container table">
+        <div class="table__intro">
+            <md-field class="table__search">
+                <label>Search by name</label>
+                <md-input v-model="searchName"></md-input>
+            </md-field>
+
+
+            <!-- <div class="table__btns">
+                <md-button class="md-primary btn-custom-color2" @click="sortByRating">Sort by rating</md-button>
+            </div> -->
+        </div>
+        
+        
        <md-table>
         <md-table-row>
             <md-table-head>ID</md-table-head>
@@ -65,8 +74,26 @@ export default {
             })
         }
     },
-   
-
 }
 </script>
+<style lang="scss" scoped>
+.table {
+    &__intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__search {
+        max-width: 300px
+    }
+}
+    .custom-align {
+        align-self: flex-end !important
+
+
+    }
+    .md-table-head, .md-table-cell {
+        text-align: center;
+    }
+</style>
 

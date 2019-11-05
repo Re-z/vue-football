@@ -287,4 +287,5 @@ export default {
 .pointer {
     cursor: pointer;
 }
+
 </style>
