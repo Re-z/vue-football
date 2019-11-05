@@ -45,7 +45,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
-import { spawn } from 'child_process';
+// import { spawn } from 'child_process';
 export default {
     data(){
         return {
@@ -53,11 +53,18 @@ export default {
         }
     },
     created() {
-        this.player = this.$route.query.player;
+        //делаем проверку - если присутствует входящий параметр роутера
+        // - распечатываем данные игрока с него и сетим локал сторедж
+        // если же входящего параметра нету (она равен [object Object])
+        // - берем данные из локал сторедж. Это сделано для того, чтобы приложение
+        // не крашилось при перезагрузке страницы
+        if(this.$route.query.player !== '[object Object]') {
+            this.player = this.$route.query.player;
+            localStorage.setItem('player', JSON.stringify(this.$route.query.player));
+        } else {
+           this.player = JSON.parse(localStorage.getItem('player'))
+        }
     },
-    
-
-    
 }
 </script>
 <style lang="scss" scoped>
