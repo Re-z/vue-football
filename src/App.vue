@@ -287,5 +287,7 @@ export default {
 .pointer {
     cursor: pointer;
 }
-
+.error {
+    color: red !important
+}
 </style>

@@ -22,6 +22,7 @@
                         </md-card-media>
                     </md-card-header>
 
+
                     <md-card-actions class="md-card-actions md-alignment-left">
 
                         <md-button 

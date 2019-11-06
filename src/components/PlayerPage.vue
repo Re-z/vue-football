@@ -4,7 +4,7 @@
         <div class="player__top">
             <img 
                 class="player__img"
-                :src="require(`@/assets/img/players/${player.name}.jpg`)" 
+                :src="require(`@/assets/img/players/${player.img}.jpg`)" 
                 :alt="player.name">
                 
             <p>{{player.aboutInfo}}</p>
