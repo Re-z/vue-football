@@ -1,39 +1,36 @@
 <template>
-        <form class="md-layout md-gutter" @submit.prevent="addNewPlayer()">
+        <form class="new-player-form md-layout md-gutter" @submit.prevent="addNewPlayer()">
 
             <div class="md-layout-item md-size-25">
-                <img src="../assets/img/avatar.jpg" class="form-img" alt="">
-                <md-field>
-                    <md-textarea  placeholder="About info" v-model="newPlayer.aboutInfo" required></md-textarea>
-                </md-field>
-                <md-button type="submit" style="width: 100%" class="md-raised md-accent">Send form</md-button>
+                <img src="../assets/img/avatar.jpg" class="new-player-form__img" alt="">
+               
             </div>
             <div class="md-layout-item">
                 <!-- если проверка прошла - функция валидации возвращает true, а error показывается в случае непрохождения проверки
                 по этому и ставим оператор отрицания ! -->
                 <md-field :class="{ 'md-invalid' : errors.name }">
                     <label>Name</label>
-                    <md-input v-model.lazy="newPlayer.name" required @blur="validateNameField"></md-input>
+                    <md-input v-model.lazy="newPlayer.name"  @blur="validateNameField"></md-input>
                     <span class="md-error">{{errors.name}}</span>
                 </md-field>
                 
                 <md-field :class="{ 'md-invalid' : errors.age }">
                     <label>Age</label>
-                    <md-input v-model.lazy ="newPlayer.age" type="number" max="50" required @blur="validateAgeField()"></md-input>
+                    <md-input v-model.lazy ="newPlayer.age" type="number" max="50"  @blur="validateAgeField()"></md-input>
                     <span class="md-error">{{errors.age}}</span>
-                </md-field>
-                
-
-                <md-field>
-                    <label>Phone number</label>
-                    <md-input v-model="newPlayer.phoneNumber" type="number"></md-input>
                 </md-field>
                 <md-field :class="{ 'md-invalid' : errors.rating }">
                     <label>Rating</label>
-                    <md-input v-model.lazy="newPlayer.rating" type="number" max="10" required @blur="validateRatingField()"></md-input>
+                    <md-input v-model.lazy="newPlayer.rating" type="number" max="10"  @blur="validateRatingField()"></md-input>
                     <span class="md-error">{{errors.rating}}</span>
                 </md-field>
-                
+
+                 <md-field :class="{ 'md-invalid' : errors.aboutInfo }">
+                    <label>About info</label>
+                    <md-textarea md-autogrow  v-model="newPlayer.aboutInfo"  @blur="validateAboutInfoField()"></md-textarea>
+                    <span class="md-error">{{errors.aboutInfo}}</span>
+                </md-field>
+                <md-button type="submit" class="md-raised md-accent new-player-form__btn">Add new player to database</md-button>
             </div>
         </form>
 </template>
@@ -52,15 +49,19 @@ export default {
             errors: {
                 name: '',
                 age: '',
+                aboutInfo: '',
                 rating: ''
             }
         }
     },
     methods: {
         addNewPlayer() {
-            this.$store.dispatch('addNewPlayer', this.newPlayer)
-            // reseting form fields
-            this.newPlayer.name = this.newPlayer.age = this.newPlayer.phoneNumber = this.newPlayer.rating = this.newPlayer.aboutInfo = ''
+            if(this.validateNameField() && this.validateAgeField() && this.validateRatingField() && this.validateAboutInfoField()) {
+                this.$store.dispatch('addNewPlayer', this.newPlayer)
+                // reseting form fields
+                this.newPlayer.name = this.newPlayer.age = this.newPlayer.rating = this.newPlayer.aboutInfo = ''
+            }
+            
         },
         validateNameField() {
             if(this.newPlayer.name.length <= 4) {
@@ -92,11 +93,12 @@ export default {
             }
         },
         validateRatingField() {
+            console.log(this.newPlayer.rating);
             if((this.newPlayer.rating).length > 2 || (this.newPlayer.rating).length === 0) {
                 this.errors.rating = 'Rating field should contain 1 or 2 digits';
                 return false;
             }
-            else if (this.newPlayer.rating >= 1 || this.newPlayer.rating > 10) {
+            else if (this.newPlayer.rating <= 1 || this.newPlayer.rating > 10) {
                 this.errors.rating = 'Rating should be higher than 1 and less than 10';
                 return false;
             }
@@ -104,18 +106,29 @@ export default {
                 this.errors.rating = ''
                 return true
             }
+        },
+        validateAboutInfoField() {
+            if(this.newPlayer.aboutInfo.length <= 0) {
+                this.errors.aboutInfo = 'About field is mandatory';
+                return false;
+            } else {
+                this.errors.aboutInfo = ''
+                return true
+            }
         }
     },
-    computed: {
-        
-    }
 }
 </script>
 <style lang="scss">
-    .form-img {
-        display: block;
-        border-radius: 50%;
-        margin: 0 auto 15px auto;
+    .new-player-form {
+        &__btn {
+            margin: 20px 0 0 0 !important;
+        }
+        &__img {
+            display: block;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+        }
     }
     
 </style>
