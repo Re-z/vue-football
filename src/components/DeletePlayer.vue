@@ -31,7 +31,7 @@
                     <md-card-media>
                         <img 
                             class="player-img"
-                            :src="require(`@/assets/img/players/${player.name}.jpg`)" 
+                            :src="require(`@/assets/img/players/${player.img}.jpg`)" 
                             :alt="player.name"
                         >
                     </md-card-media>

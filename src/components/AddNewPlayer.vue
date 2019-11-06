@@ -40,7 +40,8 @@ export default {
                 age: '',
                 phoneNumber: '',
                 rating: '',
-                aboutInfo: ''
+                aboutInfo: '',
+                img: 'default'
             }
         }
     },

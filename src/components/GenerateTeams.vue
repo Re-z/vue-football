@@ -14,9 +14,11 @@
                         <md-card-media>
                             <img 
                                 class="player-img"
-                                :src="require(`@/assets/img/players/${player.name}.jpg`)" 
+                                @error="ss"
+                                :src="require(`@/assets/img/players/${player.img}.jpg`)" 
                                 :alt="player.name"
                             >
+                           
                         </md-card-media>
                     </md-card-header>
 
@@ -60,7 +62,12 @@ export default {
         ...mapGetters([
             'getPlayersList',
             'getWillPlayPlayers'
-        ])
+        ]),
+        // setPlayerImg(player) {
+        //     if(!require(`@/assets/img/players/${player.name}.jpg`)) {
+        //         alert(1)
+        //     }
+        // }
     },
     methods: {
         // if player is chosen to getWillPlayPlayers array - change btn color
@@ -82,6 +89,10 @@ export default {
         addPlayer(ev, player){
             this.$store.commit('updateWillPlayPlayers', player);
         },
+        ss(e){
+            console.log(111);
+            e.target.src = "https://www.placecage.com/80/80"
+        }
     },
     
 
