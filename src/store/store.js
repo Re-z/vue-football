@@ -38,9 +38,11 @@ export default new Vuex.Store({
            }
         },
         checkIfPlayerWillPlay(state, player) {
-            let index = state.teams.willPlayPlayers.indexOf(player)
+            let index = state.state.teams.willPlayPlayers.indexOf(player)
             return index >= 0 ? true : false;
         },
+        
+
         generateTeams(state){
             //какого хрена нужно обращаться state.state 2 раза??
             let numberOfWillPlayPlayers = state.state.teams.willPlayPlayers.length

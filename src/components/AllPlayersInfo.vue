@@ -15,16 +15,16 @@
         
        <md-table>
         <md-table-row>
-            <md-table-head>ID</md-table-head>
+            <md-table-head :class="{'is-hidden': checkTableResponsive()}">ID</md-table-head>
             <md-table-head>Name</md-table-head>
             <md-table-head>Rating</md-table-head>
             <md-table-head>Age</md-table-head>
-            <md-table-head>Firebase ID</md-table-head>
+            <md-table-head :class="{'is-hidden': checkTableResponsive()}">Firebase ID</md-table-head>
             <md-table-head>Profile link</md-table-head>
         </md-table-row>
 
         <md-table-row v-for="(player,index) in filteredPlayers" :key="player.id">
-            <md-table-cell>{{index +1}}</md-table-cell>
+            <md-table-cell :class="{'is-hidden': checkTableResponsive()}">{{index +1}}</md-table-cell>
             <md-table-cell>{{player.name}}</md-table-cell>
             <md-table-cell>
                 <!-- передаем пропсами обьект с текущим игроком,
@@ -34,7 +34,7 @@
 
             </md-table-cell>
             <md-table-cell>{{player.age}}</md-table-cell>
-            <md-table-cell>{{player.id}}</md-table-cell>
+            <md-table-cell :class="{'is-hidden': checkTableResponsive()}">{{player.id}}</md-table-cell>
             <md-table-cell>
                 <md-button 
                     class="btn-custom-color"
@@ -61,8 +61,10 @@ export default {
         }
     },
     computed: {
+        
         ...mapGetters([
-            'getPlayersList'
+            'getPlayersList',
+            'getWillPlayPlayers'
         ]),
 
         //возможно вынести в глобальную зону видимости?
@@ -74,6 +76,11 @@ export default {
             })
         }
     },
+    methods: {
+        checkTableResponsive() {
+            return window.innerWidth < 1200 && this.getWillPlayPlayers.length > 0
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -94,6 +101,9 @@ export default {
     }
     .md-table-head, .md-table-cell {
         text-align: center;
+    }
+    .is-hidden {
+        display: none !important;
     }
 </style>
 

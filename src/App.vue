@@ -39,9 +39,10 @@
                                 <div class="md-title">{{player.name}}</div>
                             </md-card-header-text>
                             <md-card-media>
-                                <img  :src="require(`@/assets/img/players/${player.name}.jpg`)"  :alt="player.name">
+                                <img  :src="require(`@/assets/img/players/${player.img}.jpg`)"  :alt="player.name">
                             </md-card-media>
                         </md-card-header>
+
                     </md-card>
                 </div>
                 <div class="result-box__vs">
@@ -58,7 +59,7 @@
                     >
                         <md-card-header>
                             <md-card-media class="img-reverse" >
-                                <img :src="require(`@/assets/img/players/${player.name}.jpg`)"  :alt="player.name">
+                                <img :src="require(`@/assets/img/players/${player.img}.jpg`)"  :alt="player.name">
                             </md-card-media>
                             <md-card-header-text class="text-reverse">
                                 <div class="md-title">{{player.name}}</div>
@@ -91,7 +92,12 @@
 
 
         <md-app>
-            <md-app-drawer class="sidebar" :md-active.sync="getWillPlayPlayers.length > 0" md-persistent="full">
+            <md-app-drawer 
+                class="sidebar" 
+                :md-active.sync="getWillPlayPlayers.length > 0" 
+                md-persistent="full"
+                >
+                
                 <div class="sidebar-default">
                     <md-toolbar class="md-transparent" md-elevation="0">
                         <span class="md-headline">Will play players:</span>
@@ -115,8 +121,8 @@
                 <div class="sidebar__custom ">
                     
 
-                    <div class="md-toolbar">
-                        <p class="md-title">Number of will play players: <strong>{{getWillPlayPlayers.length}} of 10</strong></p>
+                    <div class="md-toolbar ">
+                        <p class="md-title md-title-visible">Number of will play players: <strong>{{getWillPlayPlayers.length}} of 10</strong></p>
                     </div>
                     <div class="md-toolbar">
                         <md-button
@@ -180,6 +186,9 @@ export default {
         closeResultPopup(){
             this.$store.commit('closeResultPopup');
             this.$store.commit('clearWillPlayPlayers')
+        },
+        b() {
+            alert(1)
         }
     },
     async created() {
@@ -193,6 +202,14 @@ export default {
 
 <style lang="scss">
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@mixin r($width) {
+    @media screen and (max-width: $width + 'px') {
+        @content
+    }
+}
+body {
+    min-width: 1024px;
+}
 .sidebar {
     // height: 100%;
     display: flex;
@@ -229,6 +246,9 @@ export default {
 .container {
     width: 1200px;
     margin: 0 auto;
+    @include r(1200) {
+        width: 100%;
+    }
 }
 .img-reverse {
     margin: 0 16px 0 0 !important;
@@ -254,6 +274,9 @@ export default {
 .md-drawer {
     width: 230px;
     max-width: calc(100vw - 125px);
+    @include r(1200) {
+        max-width: 300px !important;
+    }
 }
 .font-weight-normal {
     font-weight: 300 !important;
@@ -289,5 +312,8 @@ export default {
 }
 .error {
     color: red !important
+}
+.md-title-visible  {
+    white-space: pre-wrap !important;
 }
 </style>

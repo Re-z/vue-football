@@ -2,9 +2,12 @@
         <div class="container">
 
             <div class="md-layout md-gutter" >
+                <!-- оптимизировать проверку на респонсив -->
                 <md-card 
                     v-for="player in getPlayersList" :key="player.id"
                     class="md-layout-item md-size-30"
+                    :class="{'md-size-45': checkCardResponsive()}"
+
                 >
                     <md-card-header>
                         <md-card-header-text>
@@ -14,7 +17,6 @@
                         <md-card-media>
                             <img 
                                 class="player-img"
-                                @error="ss"
                                 :src="require(`@/assets/img/players/${player.img}.jpg`)" 
                                 :alt="player.name"
                             >
@@ -64,11 +66,7 @@ export default {
             'getPlayersList',
             'getWillPlayPlayers'
         ]),
-        // setPlayerImg(player) {
-        //     if(!require(`@/assets/img/players/${player.name}.jpg`)) {
-        //         alert(1)
-        //     }
-        // }
+        
     },
     methods: {
         // if player is chosen to getWillPlayPlayers array - change btn color
@@ -90,11 +88,13 @@ export default {
         addPlayer(ev, player){
             this.$store.commit('updateWillPlayPlayers', player);
         },
-        ss(e){
-            console.log(111);
-            e.target.src = "https://www.placecage.com/80/80"
+        //optimize
+        checkCardResponsive() {
+            console.log(1)
+            return window.innerWidth < 1200 && this.getWillPlayPlayers.length > 0
         }
     },
+    
     
 
    
@@ -112,10 +112,7 @@ export default {
     .btn-player-selected {
         background: yellow !important
     }
-    .player-img {
-        // display: inline-block;
-        // border-radius: 50%;
-    }
+  
     
     
     

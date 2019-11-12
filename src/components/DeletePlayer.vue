@@ -18,9 +18,12 @@
         </md-field>
 
         <div class="md-layout md-gutter" >
+            <!-- оптимизировать проверку на респонсив -->
             <md-card 
                 v-for="player in filteredPlayers" :key="player.id"
                 class="md-layout-item md-size-30"
+                :class="{'md-size-45': checkCardResponsive()}"
+
             >
                 <md-card-header>
                     <md-card-header-text>
@@ -99,11 +102,16 @@ export default {
         })
         // коммитим изменения во vuex
         this.$store.commit('updateAllPlayers', newPlayerList);
-      }
+      },
+      checkCardResponsive() {
+        return window.innerWidth < 1200 && this.getWillPlayPlayers.length > 0
+        }   
     },
     computed: {
         ...mapGetters([
             'getPlayersList',
+            'getWillPlayPlayers'
+
         ]),
         //Формируем новый массив на основании общего массива игроков,
         //который и выводится в UI
