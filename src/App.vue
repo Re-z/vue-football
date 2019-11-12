@@ -4,10 +4,10 @@
         <app-header></app-header>
 
         <!-- dialog with error -->
-        <md-dialog :md-active.sync="getAlertPopupStatus">
-            <md-dialog-title class="md-headline ">Sorry :(</md-dialog-title>
+        <md-dialog :md-active.sync="getAlertPopup.isVisible">
+            <md-dialog-title class="md-headline ">Error</md-dialog-title>
             <md-dialog-content class="md-title">
-               The number of players should be 10
+               {{getAlertPopup.msg}}
             </md-dialog-content> 
 
                 <md-dialog-actions>
@@ -164,8 +164,7 @@ export default {
     
     computed: mapGetters([
         'getWillPlayPlayers',
-        // 'getSidebarStatus',
-        'getAlertPopupStatus',
+        'getAlertPopup',
         'getTeam1',
         'getTeam2',
         'getResultPopupStatus',
@@ -187,9 +186,7 @@ export default {
             this.$store.commit('closeResultPopup');
             this.$store.commit('clearWillPlayPlayers')
         },
-        b() {
-            alert(1)
-        }
+        
     },
     async created() {
         this.$store.dispatch('getPlayersFromDB');

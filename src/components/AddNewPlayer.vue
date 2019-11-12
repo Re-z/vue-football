@@ -117,6 +117,26 @@ export default {
             }
         }
     },
+    //смотрим на заполнение формы и передаем значения в родительский
+    // компонент для показа warning popup
+    watch: {
+        newPlayer: {
+            handler: function() {
+                if(
+                    this.newPlayer.name
+                    || this.newPlayer.age
+                    || this.newPlayer.phoneNumber
+                    || this.newPlayer.rating
+                    || this.newPlayer.aboutInfo
+                ) {
+                    this.$emit('hasFilledFields')
+                } else {
+                    this.$emit('hasNoFilledFields')
+                }
+            },
+            deep: true,
+        }
+    }
 }
 </script>
 <style lang="scss">

@@ -61,23 +61,9 @@ export default new Vuex.Store({
 
             } else {
                 state.state.alertPopup.isVisible = true;
+                state.state.alertPopup.msg = 'The number of players should be 10 ';
             }
         },
-        createPlayerUrl(playerName) {
-            //создает урлу из имени игрока
-            let urlArray = playerName.toLowerCase().split('').map(el => {
-                // сократить ??
-                //  el === " " ? '-' : el 
-                if(el === " ") {
-                    return '-'
-                } else {
-                    return el
-                };
-            });
-            let url = urlArray.join('');
-
-            return url;
-        }
     },
     state: {
         allPlayers: [],
@@ -89,7 +75,8 @@ export default new Vuex.Store({
         },
         sidebarVisible: true,
         alertPopup: {
-            isVisible: false
+            isVisible: false,
+            msg: ''
         }
     },
 
@@ -133,8 +120,8 @@ export default new Vuex.Store({
         getWillPlayPlayers(state){
             return state.teams.willPlayPlayers
         },
-        getAlertPopupStatus(state) {
-            return state.alertPopup.isVisible
+        getAlertPopup(state) {
+            return state.alertPopup
         },
         getTeam1(state) {
             return state.teams.team1

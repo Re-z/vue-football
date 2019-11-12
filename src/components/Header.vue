@@ -6,10 +6,6 @@
                 <md-tab exact to="/all-players-info" class="md-raised" md-label="All players info"></md-tab>
                 <md-tab exact to="/manage-players" class="md-raised" md-label="Manage Players"></md-tab>
             </md-tabs>
-            <!-- <md-button exact to="/" class="md-raised">Generate Teams</md-button>
-            <md-button exact to="/add-new-player" class="md-raised">Add new player</md-button>
-            <md-button class="md-raised">Statistics</md-button> -->
-
 
         </div>
     </header>
