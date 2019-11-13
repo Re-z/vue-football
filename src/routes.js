@@ -8,7 +8,7 @@ import page404 from './components/404'
 
 
 const routes = [
-    { path: '/', component: GenerateTeamsPage},
+    { path: '/', component: GenerateTeamsPage, name: 'GenerateTeamsPage'},
     { path: '/manage-players', component: ManagePlayers},
     { path: '/player-page', component: PlayerPage},
     { path: '/all-players-info', component: AllPlayersInfo},

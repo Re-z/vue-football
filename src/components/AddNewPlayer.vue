@@ -93,7 +93,6 @@ export default {
             }
         },
         validateRatingField() {
-            console.log(this.newPlayer.rating);
             if((this.newPlayer.rating).length > 2 || (this.newPlayer.rating).length === 0) {
                 this.errors.rating = 'Rating field should contain 1 or 2 digits';
                 return false;
@@ -115,7 +114,7 @@ export default {
                 this.errors.aboutInfo = ''
                 return true
             }
-        }
+        },
     },
     //смотрим на заполнение формы и передаем значения в родительский
     // компонент для показа warning popup

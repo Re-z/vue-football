@@ -26,14 +26,8 @@
             </md-tab>
             <md-tab class="custom-bg" id="delete-player" md-label="Delete player">
                 <app-delete-player></app-delete-player>
-
             </md-tab>
         </md-tabs>
-            
-
-
-
-        
     </div>
 </div>
     
@@ -42,8 +36,9 @@
 export default {
     data: function(){
         return {
-            hasFilledFields: false,
-            leavePopupStatus: false
+            hasFilledFields: false, //проверка на заполненность полей из дочернего компонента
+            leavePopupStatus: false,
+            leaveUrl: '', //тут хранится урла, куда юзер захочет уйти при недозаполненной форме
         }
     },
     methods: {
@@ -54,18 +49,24 @@ export default {
             this.hasFilledFields = false;
         },
         pageLeave() {
-            console.log(this.$router);
+            // после подтверждения ухода c попапа - ставим флаг заполнения полей в false,
+            // для того, чтобы beforeRouteLeave не ушел в рекурсию
+            this.setFilledFiledsToFalse()
+            this.$router.push({path: this.leaveUrl})
+            
         },
         cancelPageLeave(){
-            console.log(this.$router);
-        }
+            //убираем попап,если юзер захотел остаться и дозаполнить форму
+            this.leavePopupStatus = false
+        },
     },
     //перед уходом со страницы - смотрим в дочерний компонент addNewPlayer
     // если есть заполненные поля - показываем warning popup
     // если нет - делаем переход
     beforeRouteLeave (to, from, next) {
         if(this.hasFilledFields === true) {
-           this.leavePopupStatus = true
+           this.leavePopupStatus = true;
+           this.leaveUrl = to.fullPath;
         }
         else {
             next()
@@ -82,4 +83,5 @@ export default {
             background-color: var(--md-theme-default-accent, #64dd17);
         }
     }
+    
 </style>
