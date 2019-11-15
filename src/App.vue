@@ -111,7 +111,7 @@
 
                             </span>
                             <!-- <md-button class="md-icon-button md-list-action"> -->
-                            <md-icon :md-src="require('./assets/img/delete.svg')"></md-icon>
+                            <md-icon :md-src="require('./assets/img/delete.svg')" class="close-icon"></md-icon>
                             <!-- </md-button> -->
                         </md-list-item>
 
@@ -191,8 +191,6 @@ export default {
     async created() {
         this.$store.dispatch('getPlayersFromDB');
     },
-    
-    
 };
 
 </script>
@@ -260,8 +258,11 @@ body {
     justify-content: space-between;
 }
 .router-link-exact-active {
-    background: #64dd17 !important
-    // change color to css var
+    background: #64dd17 !important;
+}
+.router-link-exact-active .md-button-content {
+    color: #424242 !important;
+    color: var(--md-theme-default-background, #424242) !important;
 }
 .md-app {
     min-height: 350px;
@@ -283,8 +284,6 @@ body {
 }
 .md-app-content, .custom-bg, .custom-dialog, .md-tabs-container, .header__tabs .md-tabs-navigation  {
     background: #303030 !important
-
-
 }
 .btn-custom-color {
     background: #303030 !important;
@@ -312,5 +311,21 @@ body {
 }
 .md-title-visible  {
     white-space: pre-wrap !important;
+}
+
+.md-tabs.md-theme-default .md-tabs-indicator {
+    display: none !important;
+}
+.md-field.md-focused label {
+    color: inherit !important;
+}
+.md-field.md-theme-default:before {
+    background-color: inherit !important;
+}
+.md-icon.close-icon {
+    display: block;
+    width: 15px;
+    height: 15px;
+    font-size: 15px !important;
 }
 </style>

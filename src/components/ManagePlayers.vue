@@ -14,7 +14,7 @@
     />
     <div class="container">
         
-        <md-tabs class="manage-teams-tabs">
+        <md-tabs class="manage-teams-tabs" id="tabs">
             <md-tab id="add-player" md-label="Add new player">
                 <!-- получаем события с дочернего компонента
                 Они нужны для трекинга заполненности полей и используются
