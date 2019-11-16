@@ -1,10 +1,28 @@
 import Vue from "vue";
 import App from "./App.vue";
-import store from "./store/store.js";
+import store from "./store/store.js"; //import vuex
 
 import VueRouter from "vue-router";
 import routes from "./routes";
-import VueMaterial from "vue-material";
+//import vue material components
+import {
+  MdButton,
+  MdContent, 
+  MdTabs,
+  MdDialog,
+  MdApp,
+  MdDrawer,
+  MdTooltip,
+  MdToolbar,
+  MdList,
+  MdTable,
+  MdField,
+  MdLayout,
+  MdCard,
+  MdDialogConfirm
+} from "vue-material/dist/components";
+
+
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/black-green-dark.css";
 
@@ -34,8 +52,22 @@ Vue.component("app-player-rating", PlayerRating);
 Vue.component("app-alert-popup", AlertPopup);
 Vue.component("app-result-popup", ResultPopup);
 
-Vue.use(VueMaterial);
 Vue.use(VueRouter);
+//use vue material components
+Vue.use(MdButton);
+Vue.use(MdContent);
+Vue.use(MdTabs);
+Vue.use(MdDialog);
+Vue.use(MdApp);
+Vue.use(MdDrawer);
+Vue.use(MdTooltip);
+Vue.use(MdToolbar);
+Vue.use(MdList);
+Vue.use(MdTable);
+Vue.use(MdField);
+Vue.use(MdLayout);
+Vue.use(MdCard);
+Vue.use(MdDialogConfirm)
 
 const router = new VueRouter({
   routes,
