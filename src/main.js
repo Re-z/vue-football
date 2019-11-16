@@ -74,6 +74,15 @@ const router = new VueRouter({
   mode: "history"
 });
 
+//Перед каждыйм переходом - сетим title новой странице
+//Берем его из файла роутера
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Vue football manager'
+  next()
+})
+
+
+
 new Vue({
   store,
   router,

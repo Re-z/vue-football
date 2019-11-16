@@ -90,7 +90,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getPlayersFromDB");
-  }
+  },
 };
 </script>
 

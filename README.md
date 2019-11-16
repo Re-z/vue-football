@@ -18,7 +18,6 @@ This web-app is used to create two different football teams and store data about
 - Сделать авторизацию по токену через firebase
 - Резетить поля формы после добавления нового игрока
 - Сделать фильтрацию в большой таблице (all players info)
-- Добавить title\description на каждую страницу
 
 
 ## Project setup

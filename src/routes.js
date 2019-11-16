@@ -5,11 +5,11 @@ import AllPlayersInfo from "./components/AllPlayersInfo";
 import page404 from "./components/404";
 
 const routes = [
-  { path: "/", component: GenerateTeamsPage, name: "GenerateTeamsPage" },
-  { path: "/manage-players", component: ManagePlayers },
-  { path: "/player-page", component: PlayerPage },
-  { path: "/all-players-info", component: AllPlayersInfo },
-  { path: "/404", component: page404 },
+  { path: "/", component: GenerateTeamsPage, meta: {title: 'Generate Teams'} },
+  { path: "/manage-players", component: ManagePlayers,meta: {title: 'Manage Players'} },
+  { path: "/player-page", component: PlayerPage, meta: {title: 'Player info'} },
+  { path: "/all-players-info", component: AllPlayersInfo, meta: {title: 'All Players'} },
+  { path: "/404", component: page404, meta: {title: 'Not Found'} },
   { path: "*", redirect: "/404" }
 ];
 
