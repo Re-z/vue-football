@@ -173,7 +173,7 @@ body {
   transition: 0s !important;
 }
 .md-drawer {
-  width: 230px;
+  // width: 230px;
   max-width: calc(100vw - 125px);
   transition: 0s !important;
   @include r(1200) {

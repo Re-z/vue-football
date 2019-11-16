@@ -1,5 +1,5 @@
 # vue-football
-
+# Demo http://football.codefantasy.xyz/
 # Description
 This web-app is used to create two different football teams and store data about football players and each completed match
 
@@ -18,7 +18,6 @@ This web-app is used to create two different football teams and store data about
 - Сделать авторизацию
 - Резетить поля формы после добавления нового игрока
 - Сделать фильтрацию в большой таблице (all players info)
-- Подумать на счет того, чтобы убрать transition y md-drawer
 
 
 
