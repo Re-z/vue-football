@@ -101,6 +101,7 @@ export default {
             return el != this.playerToDelete
         })
         // коммитим изменения во vuex
+        this.$store.dispatch('deletePlayerFromDB', this.playerToDelete);
         this.$store.commit('updateAllPlayers', newPlayerList);
       },
       checkCardResponsive() {
@@ -111,7 +112,6 @@ export default {
         ...mapGetters([
             'getPlayersList',
             'getWillPlayPlayers'
-
         ]),
         //Формируем новый массив на основании общего массива игроков,
         //который и выводится в UI

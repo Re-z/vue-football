@@ -5,7 +5,7 @@
 
         <!-- dialog with error -->
         <md-dialog :md-active.sync="getAlertPopup.isVisible">
-            <md-dialog-title class="md-headline ">Error</md-dialog-title>
+            <md-dialog-title class="md-headline ">INFO</md-dialog-title>
             <md-dialog-content class="md-title">
                {{getAlertPopup.msg}}
             </md-dialog-content> 

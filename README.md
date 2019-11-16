@@ -4,8 +4,8 @@
 This web-app is used to create two different football teams and store data about football players and each completed match
 
 ## Features:
-- Uses Vuex and VueRouter 
-- Uses VueMaterial framework
+- Использует Vuex и VueRouter 
+- Использует VueMaterial фреймворк
 - На странице manage players > delete player и all players info есть поиск по игроку
 - 404 page
 - У каждого игрока есть персональная страница, которая работает на одном компоненте и при переходе на эту страницу передается объект-параметр через vue router. Также этот объект-параметр сразу записывается в Local storage и если страница с игроком перегружается - данные тянутся не из запроса, а из Local storage.
@@ -13,9 +13,10 @@ This web-app is used to create two different football teams and store data about
 - Адаптирован под MacBook (1024px)
 - На странице Manage Players есть проверка на заполнение всех полей формы. Если юзер уходит со страницы, при этом есть заполненные поля формы - показывается попап, предупреждаюший об этом
 
-## Todo
+## Что можно еще сделать
 - Переписать скрипт рандомизации массива выбранных игроков (есть подозрения, что криво шаффлит)
 - Сделать авторизацию
+- Резетить поля формы после добавления нового игрока
 
 
 

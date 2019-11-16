@@ -35,6 +35,7 @@
         </form>
 </template>
 <script>
+
 export default {
     data(){
         return {
@@ -57,9 +58,10 @@ export default {
     methods: {
         addNewPlayer() {
             if(this.validateNameField() && this.validateAgeField() && this.validateRatingField() && this.validateAboutInfoField()) {
-                this.$store.dispatch('addNewPlayer', this.newPlayer)
-                // reseting form fields
-                this.newPlayer.name = this.newPlayer.age = this.newPlayer.rating = this.newPlayer.aboutInfo = ''
+                
+                this.$store.dispatch('addNewPlayer', this.newPlayer);
+                // this.newPlayer.name = this.newPlayer.age = this.newPlayer.rating = this.newPlayer.aboutInfo = ''
+
             }
             
         },
@@ -69,7 +71,7 @@ export default {
                 return false;
             } 
             else if ((/^[A-Za-z]+$/).test(this.newPlayer.name) !== true) {
-                this.errors.name = 'Name should contain only letters';
+                this.errors.name = 'Name should contain only latin letters';
                 return false;
             } else {
                 this.errors.name = ''
@@ -134,7 +136,7 @@ export default {
                 }
             },
             deep: true,
-        }
+        },
     }
 }
 </script>
