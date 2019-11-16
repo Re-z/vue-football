@@ -23,7 +23,6 @@
                 v-for="player in filteredPlayers" :key="player.id"
                 class="md-layout-item md-size-30"
                 :class="{'md-size-45': checkCardResponsive()}"
-
             >
                 <md-card-header>
                     <md-card-header-text>
@@ -63,14 +62,10 @@
                     </md-button>
                 </md-card-actions>
             </md-card>
-
-            <!-- if no filter results -->
-            <md-toolbar class="md-card md-theme-default" v-if="filteredPlayers.length <= 0">
-                <h3 class="md-title">Sory, but there is no player with such name :(</h3>
-            </md-toolbar>
-
-
-
+        </div>
+        <!-- if no filter results -->
+       <div v-if="filteredPlayers.length <= 0">
+            <h3 class="md-title">Sory, but there is no player with such name :(</h3>
         </div>
     </div>
 </template>

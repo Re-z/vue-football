@@ -13,7 +13,6 @@ import 'vue-material/dist/theme/black-green-dark.css' // This line here
 //components registration
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Sidebar from './components/Sidebar'
 
 import GenerateTeamsPage from './components/GenerateTeams'
 import ManagePlayers from './components/ManagePlayers'
@@ -22,6 +21,8 @@ import AddNewPlayer from './components/AddNewPlayer'
 import PlayerPage from './components/PlayerPage'
 import AllPlayersInfo from './components/AllPlayersInfo'
 import PlayerRating from './components/PlayerRating'
+import AlertPopup from './components/AlertPopup'
+import ResultPopup from './components/ResultPopup'
 
 Vue.component('app-header', Header);
 Vue.component('app-footer', Footer);
@@ -29,11 +30,11 @@ Vue.component('app-generate-teams', GenerateTeamsPage);
 Vue.component('app-manage-players', ManagePlayers)
 Vue.component('app-add-new-player', AddNewPlayer)
 Vue.component('app-delete-player', DeletePlayer)
-Vue.component('app-sidebar', Sidebar)
-Vue.component('app-player-page', PlayerPage)
 Vue.component('app-player-page', PlayerPage)
 Vue.component('app-allplayers-info', AllPlayersInfo)
 Vue.component('app-player-rating', PlayerRating)
+Vue.component('app-alert-popup', AlertPopup)
+Vue.component('app-result-popup', ResultPopup);
 
 
 

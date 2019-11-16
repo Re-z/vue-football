@@ -60,7 +60,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-    
     computed: {
         ...mapGetters([
             'getPlayersList',
@@ -94,8 +93,6 @@ export default {
             return window.innerWidth < 1200 && this.getWillPlayPlayers.length > 0
         }
     },
-    
-    
 
    
 }
@@ -112,8 +109,4 @@ export default {
     .btn-player-selected {
         background: yellow !important
     }
-  
-    
-    
-    
 </style>

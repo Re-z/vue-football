@@ -54,31 +54,26 @@ export default new Vuex.Store({
             commit('updateAllPlayers',list)
            }
         },
-        checkIfPlayerWillPlay(state, player) {
-            let index = state.state.teams.willPlayPlayers.indexOf(player)
-            return index >= 0 ? true : false;
-        },
-        
 
-        generateTeams(state){
-            //какого хрена нужно обращаться state.state 2 раза??
-            let numberOfWillPlayPlayers = state.state.teams.willPlayPlayers.length
+        generateTeams({commit,state}){
+            let numberOfWillPlayPlayers = state.teams.willPlayPlayers.length
             
             if(numberOfWillPlayPlayers === 10) {
                 //cloning willPlayPlayers arr
-                let willPlayPlayersSuffled = state.state.teams.willPlayPlayers.slice(0);
+                let willPlayPlayersSuffled = state.teams.willPlayPlayers.slice(0);
                 //sorting it
                 willPlayPlayersSuffled.sort(function() { return 0.5 - Math.random() });
                 // console.log(willPlayPlayersSuffled);
                 let team1 = willPlayPlayersSuffled.slice(0,5); //first 5 players in array - is a first team
                 let team2 = willPlayPlayersSuffled.slice(5,10); //last 5 players in array - is a second team
-                state.state.teams.team1 = team1;
-                state.state.teams.team2 = team2;
-                state.commit('showResultPopup')
+               
+                commit('setGeneratedTeam1',team1)
+                commit('setGeneratedTeam2', team2)
+                commit('showResultPopup')
 
             } else {
-                state.state.alertPopup.isVisible = true;
-                state.state.alertPopup.msg = 'The number of players should be 10 ';
+                const popupMsg = 'The number of players should be 10 '
+                commit('showAlertPopup', popupMsg);
             }
         },
     },
@@ -116,8 +111,12 @@ export default new Vuex.Store({
                 // if it doesnt - add player to willPlayPlayers array
                 state.teams.willPlayPlayers.push(player);
             }
-            // console.log(state.teams.willPlayPlayers);
-            
+        },
+        setGeneratedTeam1(state, team) {
+            state.teams.team1 = team
+        },
+        setGeneratedTeam2(state, team) {
+            state.teams.team2 = team
         },
         clearWillPlayPlayers(state) {
             state.teams.willPlayPlayers = []

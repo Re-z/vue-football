@@ -5,11 +5,6 @@
                 <label>Search by name</label>
                 <md-input v-model="searchName"></md-input>
             </md-field>
-
-
-            <!-- <div class="table__btns">
-                <md-button class="md-primary btn-custom-color2" @click="sortByRating">Sort by rating</md-button>
-            </div> -->
         </div>
         
         
@@ -48,7 +43,12 @@
                 </md-button>
             </md-table-cell>
         </md-table-row>
+        
     </md-table>
+     <!-- if no filter results -->
+        <div class="" v-if="filteredPlayers.length <= 0">
+            <h3 class="md-title">Sory, but there is no player with such name :(</h3>
+        </div>
     </div>
 </template>
 
@@ -94,16 +94,11 @@ export default {
         max-width: 300px
     }
 }
-    .custom-align {
-        align-self: flex-end !important
-
-
-    }
-    .md-table-head, .md-table-cell {
-        text-align: center;
-    }
-    .is-hidden {
-        display: none !important;
-    }
+.custom-align {
+    align-self: flex-end !important
+}
+.md-table-head, .md-table-cell {
+    text-align: center;
+}
 </style>
 

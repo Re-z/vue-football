@@ -1,94 +1,10 @@
 <template>
-
-    <div id="app" class="ss">
+    <div id="app" class="app-stretched">
         <app-header></app-header>
 
-        <!-- dialog with error -->
-        <md-dialog :md-active.sync="getAlertPopup.isVisible">
-            <md-dialog-title class="md-headline ">INFO</md-dialog-title>
-            <md-dialog-content class="md-title">
-               {{getAlertPopup.msg}}
-            </md-dialog-content> 
+        <app-alert-popup></app-alert-popup>
 
-                <md-dialog-actions>
-                    <md-button 
-                        class="md-primary btn-custom-color"
-                        @click="closeAlertPopup">
-                        Ok!
-                    </md-button>
-            </md-dialog-actions>
-        </md-dialog>
-   
-
-        <!-- results block -->
-        <md-dialog :md-active.sync="getResultPopupStatus">
-            <md-dialog-content class="custom-dialog">
-
-            
-            <div class="result-box">
-                <div class="result-box__item">
-                    <md-dialog-title class="result-box__item-title md-headline">Team 1</md-dialog-title>
-
-                    <md-card 
-                        class="md-primary" 
-                        md-theme="green-card"
-                        v-for="player in getTeam1" :key="player.id"
-                    >
-                        <md-card-header>
-                            <md-card-header-text>
-                                <div class="md-title">{{player.name}}</div>
-                            </md-card-header-text>
-                            <md-card-media>
-                                <img  :src="require(`@/assets/img/players/${player.img}.jpg`)"  :alt="player.name">
-                            </md-card-media>
-                        </md-card-header>
-
-                    </md-card>
-                </div>
-                <div class="result-box__vs">
-                    VS 
-                </div>
-
-                <div class="result-box__item">
-                    <md-dialog-title class="result-box__item-title md-headline">Team 2</md-dialog-title>
-
-                     <md-card 
-                        class="md-primary" 
-                        md-theme="green-card"
-                        v-for="player in getTeam2" :key="player.id"
-                    >
-                        <md-card-header>
-                            <md-card-media class="img-reverse" >
-                                <img :src="require(`@/assets/img/players/${player.img}.jpg`)"  :alt="player.name">
-                            </md-card-media>
-                            <md-card-header-text class="text-reverse">
-                                <div class="md-title">{{player.name}}</div>
-                            </md-card-header-text>
-                        </md-card-header>
-                    </md-card>
-                </div>
-            </div>
-
-            <md-dialog-actions>
-                <md-button 
-                    class="md-primary md-raised md-accent"
-                    @click="generateTeams">
-                    Regenerate
-                </md-button>
-                
-                <md-button 
-                    class="md-primary btn-custom-color"
-                    @click="closeResultPopup">
-                    Ok
-                </md-button>
-                 
-            </md-dialog-actions>
-            </md-dialog-content>
-        </md-dialog>
-
-
-
-
+        <app-result-popup></app-result-popup>
 
 
         <md-app>
@@ -96,8 +12,7 @@
                 class="sidebar" 
                 :md-active.sync="getWillPlayPlayers.length > 0" 
                 md-persistent="full"
-                >
-                
+			>
                 <div class="sidebar-default">
                     <md-toolbar class="md-transparent" md-elevation="0">
                         <span class="md-headline">Will play players:</span>
@@ -108,53 +23,38 @@
                             <span 
                                 class="md-list-item-text md-title font-weight-normal">
                                 {{player.name}}
-
                             </span>
-                            <!-- <md-button class="md-icon-button md-list-action"> -->
                             <md-icon :md-src="require('./assets/img/delete.svg')" class="close-icon"></md-icon>
-                            <!-- </md-button> -->
                         </md-list-item>
-
                     </md-list>
                 </div>
 
-                <div class="sidebar__custom ">
-                    
-
-                    <div class="md-toolbar ">
-                        <p class="md-title md-title-visible">Number of will play players: <strong>{{getWillPlayPlayers.length}} of 10</strong></p>
-                    </div>
-                    <div class="md-toolbar">
-                        <md-button
-                            class="sidebar__btn md-raised md-accent"
-                            @click="generateTeams"
-                            >Generate Teams!
-                        </md-button>
-                    </div>
-                    <div class="md-toolbar">
-                        <md-button 
-                            class="sidebar__btn sidebar__btn btn-custom-color-warn md-raised md-accent"
-                            @click="clearWillPlayPlayers"
-                            >
-                            Clear List
-                        </md-button>
-                    </div>
-
-                </div>
-
-            </md-app-drawer>
-
+			<div class="sidebar__custom ">
+				<div class="md-toolbar ">
+					<p class="md-title md-title-visible">Number of will play players: <strong>{{getWillPlayPlayers.length}} of 10</strong></p>
+				</div>
+				<div class="md-toolbar">
+					<md-button
+						class="sidebar__btn md-raised md-accent"
+						@click="generateTeams"
+						>Generate Teams!
+					</md-button>
+				</div>
+				<div class="md-toolbar">
+					<md-button 
+						class="sidebar__btn sidebar__btn btn-custom-color-warn md-raised md-accent"
+						@click="clearWillPlayPlayers"
+						>
+						Clear List
+					</md-button>
+				</div>
+			</div>
+		</md-app-drawer>
             <md-app-content>
-                
                 <router-view></router-view>
-
             </md-app-content>
         </md-app>
         <app-footer></app-footer>
-
-
-
-
     </div>
 </template>
 
@@ -173,9 +73,6 @@ export default {
         clearWillPlayPlayers() {
             this.$store.commit('clearWillPlayPlayers')
         },
-        closeAlertPopup(){
-            this.$store.commit('closeAlertPopup')
-        },
         generateTeams() {
             this.$store.dispatch('generateTeams')
         },
@@ -188,7 +85,7 @@ export default {
         },
         
     },
-    async created() {
+     created() {
         this.$store.dispatch('getPlayersFromDB');
     },
 };
@@ -206,7 +103,6 @@ body {
     min-width: 1024px;
 }
 .sidebar {
-    // height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -215,7 +111,6 @@ body {
         width: 100%;
     }
 }
-
 .result-box {
     display: flex;
     justify-content: space-between;
@@ -251,7 +146,10 @@ body {
 .text-reverse {
     text-align: right !important;
 }
-.ss {
+.text-center {
+    text-align: center;
+}
+.app-stretched {
     height: 100vh;   
     display: flex;
     flex-direction: column;
@@ -298,10 +196,10 @@ body {
     background: tomato !important;
 }
 .star {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background: url(./assets/img/star.svg);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(./assets/img/star.svg);
 }
 .pointer {
     cursor: pointer;
@@ -312,7 +210,6 @@ body {
 .md-title-visible  {
     white-space: pre-wrap !important;
 }
-
 .md-tabs.md-theme-default .md-tabs-indicator {
     display: none !important;
 }
@@ -327,5 +224,8 @@ body {
     width: 15px;
     height: 15px;
     font-size: 15px !important;
+}
+.is-hidden {
+    display: none !important;
 }
 </style>
