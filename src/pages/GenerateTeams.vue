@@ -78,7 +78,6 @@ export default {
     },
     //optimize
     checkCardResponsive() {
-      console.log(1);
       return window.innerWidth < 1200 && this.getWillPlayPlayers.length > 0;
     }
   }

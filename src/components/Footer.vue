@@ -13,15 +13,9 @@
 
 <style lang="scss" scoped>
 @keyframes pulse {
-  from {
-    transform: scale(0.9);
-  }
-  50% {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
+  from {transform: scale(0.9);}
+  50% {transform: scale(1);}
+  to {transform: scale(1.1);}
 }
 .footer {
   border-top: 1px solid #424242;
