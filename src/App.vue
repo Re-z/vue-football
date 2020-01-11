@@ -81,6 +81,9 @@ body {
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 .app-stretched {
   height: 100vh;
   display: flex;
@@ -167,5 +170,22 @@ body {
 }
 .is-hidden {
   display: none !important;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.8);
+  width: 100%;
+  height: 100vh;
+}
+.absolute-centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%)
+
 }
 </style>
