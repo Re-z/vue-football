@@ -2,7 +2,6 @@
 <div id="app" class="app-stretched">
     <app-header></app-header>
 
-    <app-alert-popup></app-alert-popup>
 
     <app-result-popup></app-result-popup>
 

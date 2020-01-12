@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Auth from '@/store/auth'
+import auth from '@/store/auth'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -143,7 +143,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    Auth
+    auth
   },
   getters: {
     getPlayersList(state) {

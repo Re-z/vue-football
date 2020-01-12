@@ -1,5 +1,7 @@
 <template>
   <div>
+      <app-alert-popup></app-alert-popup>
+
       <component :is="selectTemplate"></component>
   </div>
 </template>
