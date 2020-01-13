@@ -12,7 +12,7 @@
             <label>Password</label>
             <md-input v-model="password"></md-input>
         </md-field>
-
+        {{logInStatus}}
         <div class="custom-btn-wrap">
             <md-button type="submit" class="custom-btn md-raised md-accent">Log in</md-button>
         </div>
@@ -37,7 +37,16 @@ export default {
             }
             this.$store.dispatch('login', formData)
         }
-    }
+    },
+    computed: {
+        logInStatus() {
+            if(this.$store.getters.getAuthData.loggedIn === true) {
+                //if no error catch - we have console warning
+                this.$router.push('/').catch(err => {})
+            }
+        }
+    },
+    
 }
 </script>
 

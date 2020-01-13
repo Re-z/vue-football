@@ -1,10 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import auth from '@/store/auth'
+import router from '@/routes'
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   actions: {
+   
+    
+
+
     async addNewPlayer({ commit }, newPlayer) {
       // sending form data to server
       let data = fetch(
@@ -97,17 +103,27 @@ export default new Vuex.Store({
     alertPopup: {
       isVisible: false,
       msg: ""
-    }
+    },
+
   },
 
   mutations: {
+    setAuthData(state, dataObj) {
+			state.loggedIn = true
+			state.firebaseToken = dataObj.idToken
+			state.firebaseRefreshToken = dataObj.refreshToken
+			state.authEmail = dataObj.email
+    },
+    
     addNewPlayerToAllPlayers(state, newPlayer) {
+
       state.allPlayers.push(newPlayer);
     },
     updateAllPlayers(state, players) {
       state.allPlayers = players;
     },
     updateWillPlayPlayers(state, player) {
+
       // returns index of el if el already exists in array, or -1 if it doesnt
       let index = state.teams.willPlayPlayers.indexOf(player);
 

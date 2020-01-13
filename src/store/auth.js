@@ -1,13 +1,12 @@
-import router from '@/routes'
-
-
 export default {
 	state: {
+		loggedIn: false,
+		authEmail: '',
 		firebaseToken: '',
 		firebaseRefreshToken: ''
 	},
 	actions: {
-		login({commit,state}, payload) {
+		login({commit}, payload) {
 			const firebaseApiKey = 'AIzaSyAWDC-A_tPOyySP7GeabRr_KlLRFLt82KY',
 				firebaseLoginUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword'
 			fetch(`${firebaseLoginUrl}?key=${firebaseApiKey}`, {
@@ -18,42 +17,37 @@ export default {
 				})
 			})
 			.then(response => response.json())
-			.then(answer => {
-				console.log(answer)
-				commit('setFirebaseToken', answer.idToken)
-				commit('setFirebaseRefreshToken', answer.refreshToken)
-				
-				if(!state.firebaseToken) {
-					commit('showAlertPopup', answer.error.errors[0].message)
-				}
-				else {
-					alert(1)
-					router.push('/')
-				}
-				// this.firebaseToken = answer.idToken,
-				// this.firebaseRefreshToken = answer.firebaseRefreshToken
-				// console.log(state.firebaseToken);
-				// console.log(state.firebaseRefreshToken);
-				//if answer has error
-				if(!state.firebaseToken || !state.firebaseRefreshToken) {
-					commit('showAlertPopup', answer.error.errors[0].message)
+			.then(response => {
+				console.log(response)
+				//if response doesnt have token, it means that we have error
+				if(!response.idToken) {
+					//handle error
+					commit('showAlertPopup', response.error.errors[0].message)
+				} else {
+					// if we have token - update state
+					commit('setAuthData', response)
 				}
 			})
-			//if answer didnt come
-			// .catch(error => {
-			// 	commit('showAlertPopup', 'Something went wrong')
-			// })
+			
 		}
 	},
 	mutations: {
-		setAuthData() {
-
+		setAuthData(state, dataObj) {
+			state.loggedIn = true,
+			state.firebaseToken = dataObj.idToken
+			state.firebaseRefreshToken = dataObj.refreshToken
+			state.authEmail = dataObj.email
 		},
-		setFirebaseToken(state, token) {
-			state.firebaseToken = token
-		},
-		setFirebaseRefreshToken(state, token) {
-			state.firebaseRefreshToken = token
+		
+	},
+	getters: {
+		getAuthData(state) {
+			return {
+				loggedIn: state.loggedIn,
+				authEmail: state.authEmail,
+				firebaseToken: state.firebaseToken,
+				firebaseRefreshToken: state.firebaseRefreshToken 
+			}
 		}
 	}
 }
