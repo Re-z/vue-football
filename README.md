@@ -1,7 +1,8 @@
 # vue-football
 # Demo http://football.codefantasy.xyz/
 # Description
-This web-app is used to create two different football teams and store data about football players and each completed match
+Приложение для футбольного менеджера дворового футбола (администратора), которое позволяет хранить информацию касательно игроков, добавлять, удалять их из базы данных, а также делить на команды.
+
 
 ## Features:
 - Использует Vuex и VueRouter 
@@ -15,7 +16,6 @@ This web-app is used to create two different football teams and store data about
 - Есть авторизация через Firebase (/login). Логин - admin@gmail.com, пароль - 123456
 ## Что можно еще сделать
 - Переписать скрипт рандомизации массива выбранных игроков (есть подозрения, что криво шаффлит)
-- Сделать авторизацию по токену через firebase
 - Резетить поля формы после добавления нового игрока
 - Сделать фильтрацию в большой таблице (all players info)
 
