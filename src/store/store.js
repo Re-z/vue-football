@@ -1,16 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import auth from '@/store/auth'
-import router from '@/routes'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   actions: {
-   
-    
-
-
     async addNewPlayer({ commit }, newPlayer) {
       // sending form data to server
       let data = fetch(

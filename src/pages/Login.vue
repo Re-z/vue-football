@@ -3,19 +3,17 @@
     <div class="custom-margin md-headline text-right">Login</div>
     <form action="" @submit.prevent="login">
         <md-field class="custom-input">
-			<p>admin@gmail.com</p>
             <label>Email</label>
-            <md-input v-model="email"></md-input>
+            <md-input v-model="email" type="email"></md-input>
         </md-field>
         <md-field class="custom-input">
-			<p>123456</p>
             <label>Password</label>
-            <md-input v-model="password"></md-input>
+            <md-input v-model="password" type="password"></md-input>
         </md-field>
-        {{logInStatus}}
         <div class="custom-btn-wrap">
             <md-button type="submit" class="custom-btn md-raised md-accent">Log in</md-button>
         </div>
+        {{logInStatus}}
     </form>
 
 </div>
@@ -31,28 +29,32 @@ export default {
     },
     methods: {
         login() {
-            const formData = {
-                email: this.email,
-                password: this.password
+            if (this.email && this.password) {
+                const formData = {
+                    email: this.email,
+                    password: this.password
+                }
+                this.$store.dispatch('login', formData)
+            } else {
+                this.$store.commit('showAlertPopup', 'All fields are mandatory')
             }
-            this.$store.dispatch('login', formData)
         }
     },
     computed: {
         logInStatus() {
-            if(this.$store.getters.getAuthData.loggedIn === true) {
+            if (this.$store.getters.getAuthData.loggedIn === true) {
                 //if no error catch - we have console warning
                 this.$router.push('/').catch(err => {})
             }
         }
     },
-    
+
 }
 </script>
 
 <style lang="scss" scoped>
 .login {
-    min-width: 400px;
+    min-width: 350px;
 }
 
 .custom-input {

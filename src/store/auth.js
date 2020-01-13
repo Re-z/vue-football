@@ -13,12 +13,13 @@ export default {
 				method: 'POST',
 				body: JSON.stringify({
 					...payload,
-					returnSecureToken: true,
+					//want to have refreshToken in response
+					//its a part of Firebase API
+					returnSecureToken: true, 
 				})
 			})
 			.then(response => response.json())
 			.then(response => {
-				console.log(response)
 				//if response doesnt have token, it means that we have error
 				if(!response.idToken) {
 					//handle error
@@ -28,17 +29,19 @@ export default {
 					commit('setAuthData', response)
 				}
 			})
-			
 		}
 	},
 	mutations: {
 		setAuthData(state, dataObj) {
 			state.loggedIn = true,
 			state.firebaseToken = dataObj.idToken
-			state.firebaseRefreshToken = dataObj.refreshToken
 			state.authEmail = dataObj.email
 		},
-		
+		clearAuthData(state) {
+			state.loggedIn = false,
+			state.firebaseToken = ''
+			state.authEmail = ''
+		}
 	},
 	getters: {
 		getAuthData(state) {
@@ -46,7 +49,6 @@ export default {
 				loggedIn: state.loggedIn,
 				authEmail: state.authEmail,
 				firebaseToken: state.firebaseToken,
-				firebaseRefreshToken: state.firebaseRefreshToken 
 			}
 		}
 	}
