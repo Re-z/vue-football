@@ -13,9 +13,7 @@
         <div class="custom-btn-wrap">
             <md-button type="submit" class="custom-btn md-raised md-accent">Log in</md-button>
         </div>
-        {{logInStatus}}
     </form>
-
 </div>
 </template>
 
@@ -28,27 +26,43 @@ export default {
         }
     },
     methods: {
+        //login function, that connects to Firebase
+        sendLoginRequestToDB(userData) {
+            const firebaseApiKey = "AIzaSyAWDC-A_tPOyySP7GeabRr_KlLRFLt82KY",
+                firebaseLoginUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+            fetch(`${firebaseLoginUrl}?key=${firebaseApiKey}`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        ...userData,
+                    })
+                })
+                .then(response => response.json())
+                .then(response => {
+                    //if response doesnt have token, it means that we have error
+                    if (!response.idToken) {
+                        //handle error
+                        this.$store.commit("showAlertPopup", response.error.errors[0].message);
+                    } else {
+                        // if we have token - update state
+                        this.$store.commit("setAuthData", response);
+                        this.$router.push('/')
+                    }
+                });
+        },
+        //login function that handles form submit
         login() {
             if (this.email && this.password) {
                 const formData = {
                     email: this.email,
                     password: this.password
                 }
-                this.$store.dispatch('login', formData)
+                //trigger connect to Firebase
+                this.sendLoginRequestToDB(formData)
             } else {
                 this.$store.commit('showAlertPopup', 'All fields are mandatory')
             }
         }
     },
-    computed: {
-        logInStatus() {
-            if (this.$store.getters.getAuthData.loggedIn === true) {
-                //if no error catch - we have console warning
-                this.$router.push('/').catch(err => {})
-            }
-        }
-    },
-
 }
 </script>
 
