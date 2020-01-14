@@ -31,8 +31,13 @@ const routes = [
 		...routeGuard
 	},
 	{
-		path: "/player-page",
+		//страницу каждого игрока формируем по одному шаблону
+		path: "/player-page/:playerName",
 		component: PlayerPage,
+		//передаем в компонент PlayerPage урлу, которая будет введена после /player-page
+		// и уже в самом компоненте будем фильтровать и показывать контент, если урла ОК, и 404,
+		// если нет
+		props: true,
 		meta: { title: "Player info" },
 		...routeGuard
 	},

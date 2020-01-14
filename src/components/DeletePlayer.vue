@@ -50,10 +50,8 @@
           <md-button
             class="btn-custom-color2"
             :to="{
-              path: '/player-page',
-              query: {
-                player
-              }
+              path: `/player-page/${player.url}`,
+
             }"
           >
             About
