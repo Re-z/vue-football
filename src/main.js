@@ -5,7 +5,22 @@ import store from "./store/store.js"; //import vuex
 import VueRouter from "vue-router";
 import routes from "./routes";
 //import vue material components
-import { MdButton, MdContent, MdTabs, MdDialog, MdApp, MdDrawer, MdTooltip, MdToolbar, MdList, MdTable, MdField, MdLayout, MdCard, MdDialogConfirm } from "vue-material/dist/components";
+import {
+  MdButton,
+  MdContent,
+  MdTabs,
+  MdDialog,
+  MdApp,
+  MdDrawer,
+  MdTooltip,
+  MdToolbar,
+  MdList,
+  MdTable,
+  MdField,
+  MdLayout,
+  MdCard,
+  MdDialogConfirm
+} from "vue-material/dist/components";
 
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/black-green-dark.css";
@@ -48,19 +63,19 @@ Vue.use(MdCard);
 Vue.use(MdDialogConfirm);
 
 const router = new VueRouter({
-	routes,
-	mode: "history"
+  routes,
+  mode: "history"
 });
 
 //Перед каждыйм переходом - сетим title новой странице
 //Берем его из файла роутера
 router.beforeEach((to, from, next) => {
-	document.title = to.meta.title || "Vue football manager";
-	next();
+  document.title = to.meta.title || "Vue football manager";
+  next();
 });
 
 new Vue({
-	store,
-	router,
-	render: h => h(App)
+  store,
+  router,
+  render: h => h(App)
 }).$mount("#app");

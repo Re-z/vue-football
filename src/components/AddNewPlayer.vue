@@ -23,6 +23,13 @@
 				<span class="md-error">{{ errors.rating }}</span>
 			</md-field>
 
+			<md-field :class="{ 'md-invalid': errors.url }">
+				<label>URL</label>
+				<md-input v-model.lazy="newPlayer.url" type="text" @blur="validateUrlField()"></md-input>
+				<span class="md-error">{{ errors.url }}</span>
+			</md-field>
+
+
 			<md-field :class="{ 'md-invalid': errors.aboutInfo }">
 				<label>About info</label>
 				<md-textarea md-autogrow v-model="newPlayer.aboutInfo" @blur="validateAboutInfoField()"></md-textarea>
@@ -43,13 +50,15 @@ export default {
 				phoneNumber: "",
 				rating: "",
 				aboutInfo: "",
-				img: "default"
+				img: "default",
+				url: ""
 			},
 			errors: {
 				name: "",
 				age: "",
 				aboutInfo: "",
-				rating: ""
+				rating: "",
+				url: ""
 			}
 		};
 	},
@@ -64,7 +73,7 @@ export default {
 			if (this.newPlayer.name.length <= 4) {
 				this.errors.name = "Name should contain 4 and more symbols";
 				return false;
-			} else if (/^[A-Za-z]+$/.test(this.newPlayer.name) !== true) {
+			} else if (/^[A-Za-z]+([\ A-Za-z]+)*/.test(this.newPlayer.name) !== true) {
 				this.errors.name = "Name should contain only latin letters";
 				return false;
 			} else {
@@ -72,6 +81,19 @@ export default {
 				return true;
 			}
 		},
+		validateUrlField() {
+			if (this.newPlayer.url.length <= 4) {
+				this.errors.url = "Url should contain 4 and more symbols";
+				return false;
+			} else if (/^[A-Za-z]+([\ A-Za-z]+)*/.test(this.newPlayer.url) !== true) {
+				this.errors.url = "Name should contain only latin letters";
+				return false;
+			} else {
+				this.errors.url = "";
+				return true;
+			}
+		},
+
 		validateAgeField() {
 			//получаем данные с инпута в строковом формате, смотрим какая длинна
 			// если не 2 цифры, то тригерим еррор

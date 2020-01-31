@@ -50,8 +50,7 @@
           <md-button
             class="btn-custom-color2"
             :to="{
-              path: `/player-page/${player.url}`,
-
+              path: `/player-page/${player.url}`
             }"
           >
             About
@@ -115,7 +114,7 @@ export default {
 };
 </script>
 <style lang="scss">
-  .confirm-delete-popup .md-primary {
-    background: tomato !important;
-  }
+.confirm-delete-popup .md-primary {
+  background: tomato !important;
+}
 </style>

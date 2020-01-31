@@ -31,10 +31,10 @@
             {{ selectPlayerBtnText(player) }}
           </md-button>
 
-         <!-- Создаем динамическую урлу для каждого игрока -->
+          <!-- Создаем динамическую урлу для каждого игрока -->
           <md-button
             class="btn-custom-color2"
-            :to="{path: `/player-page/${player.url}`}"
+            :to="{ path: `/player-page/${player.url}` }"
           >
             About
           </md-button>

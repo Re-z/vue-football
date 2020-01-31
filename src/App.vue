@@ -1,30 +1,29 @@
 <template>
   <div>
-      <app-alert-popup></app-alert-popup>
+    <app-alert-popup></app-alert-popup>
 
-      <component :is="selectTemplate"></component>
+    <component :is="selectTemplate"></component>
+    
   </div>
 </template>
 
 <script>
-import InnerPageTemplate from './templates/InnerPageTemplate'
-import AuthTemplate from './templates/AuthTemplate'
+import InnerPageTemplate from "./templates/InnerPageTemplate";
+import AuthTemplate from "./templates/AuthTemplate";
 export default {
   computed: {
     selectTemplate() {
-
-      if(this.$route.fullPath === '/login') {
-        return 'AuthTemplate'
+      if (this.$route.fullPath === "/login") {
+        return "AuthTemplate";
       }
-      return 'InnerPageTemplate'
-
+      return "InnerPageTemplate";
     }
   },
   components: {
     InnerPageTemplate,
     AuthTemplate
   }
-}
+};
 </script>
 <style lang="scss">
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
@@ -179,7 +178,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,.8);
+  background: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100vh;
 }
@@ -187,7 +186,6 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%)
-
+  transform: translate(-50%, -50%);
 }
 </style>
