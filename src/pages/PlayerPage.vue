@@ -72,19 +72,15 @@ export default {
       if (currentPlayer.length) {
         this.player = currentPlayer[0];
       } else {
-        console.log("404");
-        // this.$router.push("/404");
+        this.$router.push("/404");
       }
     }
   },
   created() {
-    this.setPlayerData();
+	this.setPlayerData();
+	console.log(this.playerName);
   }
-  // beforeRouteUpdate() {
-  // 	console.log(this.$route);
-
-  // 	this.setPlayerData();
-  // }
+  
 };
 </script>
 
