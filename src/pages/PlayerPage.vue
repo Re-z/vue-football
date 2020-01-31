@@ -3,7 +3,8 @@
 		<template v-if="player">
 			<h2>{{ player.name }}</h2>
 			<div class="player__top">
-				<img class="player__img" :src="require(`@/assets/img/players/${player.img}.jpg`)" :alt="player.name" />
+				<!-- <img class="player__img" :src="require(`@/assets/img/players/${player.img}.jpg`)" :alt="player.name" /> -->
+				
 				<p>{{ player.aboutInfo }}</p>
 			</div>
 			<div class="player__bottom">
@@ -65,16 +66,19 @@ export default {
 			if (currentPlayer.length) {
 				this.player = currentPlayer[0];
 			} else {
-				this.$router.push("/404");
+				console.log('404');
+				// this.$router.push("/404");
 			}
 		}
 	},
-	mounted() {
+	created() {
 		this.setPlayerData();
 	},
-	beforeRouteUpdate() {
-		this.setPlayerData();
-	}
+	// beforeRouteUpdate() {
+	// 	console.log(this.$route);
+
+	// 	this.setPlayerData();
+	// }
 };
 </script>
 

@@ -1,23 +1,21 @@
 # vue-football
 # Demo http://football.codefantasy.xyz/
 # Description
-Приложение для футбольного менеджера дворового футбола (администратора), которое позволяет хранить информацию касательно игроков, добавлять, удалять их из базы данных, а также делить на команды.
+This is an application for footbal manager(administrator), which allows to store information about football players, add, remove players from Database and divide players into teams.
 
 
 ## Features:
-- Использует Vuex и VueRouter 
-- Использует VueMaterial фреймворк
-- На странице manage players > delete player и all players info есть поиск по игроку
+- Uses Vuex и VueRouter 
+- Uses VueMaterial framework
+- Uses Firebase as data storage
+- At the pages manage players > delete player & all players info there is an search
 - 404 page
-- У каждого игрока есть персональная страница, которая работает на одном компоненте и при переходе на эту страницу передается объект-параметр через vue router. Также этот объект-параметр сразу записывается в Local storage и если страница с игроком перегружается - данные тянутся не из запроса, а из Local storage.
-- Есть возможность добавить нового игрока в базу. На странице manage players > add нужно заполнить форму (есть валидация). Запрос отправляется в firebase. Для нового игрока устанавливается дефолтная аватарка.
-- Адаптирован под MacBook (1024px)
-- На странице Manage Players есть проверка на заполнение всех полей формы. Если юзер уходит со страницы, при этом есть заполненные поля формы - показывается попап, предупреждаюший об этом
-- Есть авторизация через Firebase (/login). Логин - admin@gmail.com, пароль - 123456. Также есть защита от незалогиненого доступа по урле для всех основных страниц с контентом (route guards)
-## Что можно еще сделать
-- Переписать скрипт рандомизации массива выбранных игроков (есть подозрения, что криво шаффлит)
-- Резетить поля формы после добавления нового игрока
-- Сделать фильтрацию в большой таблице (all players info)
+- Every player has his own personal page. It`s implemented with via one component
+- There is possibiliy to add new player to Database (Firebase). To do that, you can go to manage players page > add and fill the form (and pass validation). For every new player is used default avatar
+- Has responsive layout 1024px+
+- At Manage Players page there is a verification of form. If user leaves page and there are some filled fields in form --> alert popup is shown
+- There is an Firebase authentification (at /login page). Login - admin@gmail.com, password - 123456. Also
+there is an route guards mechanism, and user cannot go to inner pages if he didnt pass the login step.
 
 
 ## Project setup
